@@ -1,12 +1,9 @@
-import 'package:bartering/config/string.dart';
-import 'package:bartering/screens/register_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
+import 'package:my_app/config/string.dart';
+import 'package:my_app/screens/landing_screen.dart';
 import '../components/button.dart';
 import '../components/constants.dart';
-import '../provider/authenticateProvider.dart';
-import 'landing_screen.dart';
+import 'register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -26,17 +23,18 @@ class _LoginState extends State<LoginScreen> {
   void login(BuildContext context) async {
     print(emailController.text + ' ' + passwordController.text);
     try {
-      await Provider.of<AuthenticateProvider>(context, listen: false).login(
-          emailController.text.toString(), passwordController.text.toString());
-      // ProfileScreen(email: emailController.text.toString());
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) {
-            return const LandingScreen(sectionIndex: 0);
-          },
-        ),
-      );
+      // Utils.showAlertDialog(context);
+      // await Provider.of<AuthenticateProvider>(context, listen: false).login(
+      //     emailController.text.toString(), passwordController.text.toString());
+      // // ProfileScreen(email: emailController.text.toString());
+      // Navigator.push(
+      //   context,
+      //   MaterialPageRoute(
+      //     builder: (context) {
+      //       return const LandingScreen(sectionIndex: 0);
+      //     },
+      //   ),
+      // );
     } catch (error) {
       print(error);
       Navigator.pop(context);
@@ -50,7 +48,9 @@ class _LoginState extends State<LoginScreen> {
         //   context,
         //   MaterialPageRoute(
         //     builder: (context) {
-
+        //       return OtpScreen(
+        //           email: emailController.text.toString(),
+        //           password: passwordController.text.toString());
         //     },
         //   ),
         // );
@@ -66,6 +66,7 @@ class _LoginState extends State<LoginScreen> {
       color: whitePrimary,
       child: SafeArea(
         child: Scaffold(
+          // backgroundColor: kPrimaryColor,
           body: Container(
             color: whitePrimary,
             child: SafeArea(
@@ -76,20 +77,6 @@ class _LoginState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      Container(
-                          padding: const EdgeInsets.all(20),
-                          height: 200,
-                          child: Stack(
-                            children: <Widget>[
-                              Positioned(
-                                  child: Container(
-                                decoration: const BoxDecoration(
-                                    image: DecorationImage(
-                                  image: AssetImage('assets/images/logo.png'),
-                                )),
-                              )),
-                            ],
-                          )),
                       const SizedBox(
                         height: 20,
                       ),
@@ -100,7 +87,7 @@ class _LoginState extends State<LoginScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const Text(
-                                  '',
+                                  'Movie Assignment',
                                   style: TextStyle(
                                       // color: kPrimaryFont,
                                       fontSize: 24,
@@ -110,7 +97,7 @@ class _LoginState extends State<LoginScreen> {
                                 const Padding(
                                   padding: EdgeInsets.only(top: 8.0),
                                   child: Text(
-                                    'login',
+                                    'login with email to start watching movie',
                                     style: TextStyle(
                                       // color: kPrimaryFont,
                                       fontSize: 14,
@@ -139,7 +126,7 @@ class _LoginState extends State<LoginScreen> {
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) {
-                                                  return RegisterScreen();
+                                                  return const RegisterScreen();
                                                 },
                                               ),
                                             );
@@ -238,11 +225,11 @@ class _LoginState extends State<LoginScreen> {
                                 setState(() {
                                   // Navigator.push(
                                   //   context,
-                                  //   MaterialPageRoute(
-                                  //     builder: (context) {
-                                  //       return
-                                  //     },
-                                  //   ),
+                                  //   // MaterialPageRoute(
+                                  //   //   builder: (context) {
+                                  //   //     return ForgetPasswordScreen();
+                                  //   //   },
+                                  //   // ),
                                   // );
                                 });
                               },
@@ -261,11 +248,19 @@ class _LoginState extends State<LoginScreen> {
                           textColor: whitePrimary,
                           fontsize: 16.00,
                           onPress: () {
-                            setState(() {
-                              isError = false;
-                            });
-                            Navigator.pop(context);
-                            login(context);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return const LandingScreen();
+                                },
+                              ),
+                            );
+                            // setState(() {
+                            //   isError = false;
+                            // });
+                            // Navigator.pop(context);
+                            // login(context);
                           },
                           title: 'Login'),
                       const SizedBox(

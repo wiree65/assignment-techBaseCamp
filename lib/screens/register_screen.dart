@@ -1,13 +1,14 @@
-import 'package:bartering/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
+import 'package:my_app/screens/landing_screen.dart';
 
 import '../components/button.dart';
 import '../components/constants.dart';
-import '../provider/authenticateProvider.dart';
+// import '../provider/authenticateProvider.dart';
 
 class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({Key? key}) : super(key: key);
+
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
 }
@@ -55,18 +56,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   void register() async {
     try {
-      showAlertDialog(context);
-      await Provider.of<AuthenticateProvider>(context, listen: false).register(
-        emailController.text,
-        passwordController.text,
-      );
+      // showAlertDialog(context);
+      // await Provider.of<AuthenticateProvider>(context, listen: false).register(
+      //   emailController.text,
+      //   passwordController.text,
+      // );
       // Navigator.pop(context);
 
       // Navigator.pushReplacement(
       //   context,
       //   MaterialPageRoute(
       //     builder: (context) {
-      //       return
+      //       return OtpScreen(
+      //           email: emailController.text.toString(),
+      //           password: passwordController.text.toString());
       //     },
       //   ),
       // );
@@ -130,7 +133,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           child: Container(
                             alignment: Alignment.topLeft,
                             child: const Text(
-                              '',
+                              'Create an account to start watching movie',
                               style: TextStyle(
                                 // color: kPrimaryFont,
                                 fontSize: 14,
@@ -349,7 +352,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) {
-                                          return const LoginScreen();
+                                          return const LandingScreen();
                                         },
                                       ),
                                     );

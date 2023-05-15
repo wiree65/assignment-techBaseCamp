@@ -1,0 +1,50 @@
+name: bartering
+description: A new Flutter project.
+
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  auto_size_text: ^3.0.0
+  image_picker: ^0.8.5
+  image_cropper: ^1.4.1
+  dotted_border: ^2.0.0+2
+  multi_image_picker: ^4.7.14
+  substring_highlight: ^1.0.33
+  textfield_tags: ^1.4.2
+  filter_list: ^0.0.5
+  provider: ^5.0.0
+  shared_preferences: ^2.0.5
+  dio: ^4.0.0
+  flutter_hooks: ^0.18.1
+  flutter_rating_bar: ^4.0.0
+  # google_maps_place_picker: ^2.0.0-nullsafety.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^1.0.0
+
+flutter:
+  uses-material-design: true
+
+  fonts:
+    - family: supermarket
+      fonts:
+        - asset: assets/fonts/supermarket.ttf
+    - family: Quicksand
+      fonts:
+        - asset: assets/fonts/Quicksand.ttf
+
+  assets:
+    - assets/images/
+    - assets/

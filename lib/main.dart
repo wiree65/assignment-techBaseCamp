@@ -17,9 +17,9 @@ class MyApp extends StatelessWidget {
         //     debugShowCheckedModeBanner: false, home: LoginScreen());
         MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (ctx) => SearchProvider()),
+        ChangeNotifierProvider(create: (ctx) => MovieProvider()),
       ],
-      child: Consumer<SearchProvider>(
+      child: Consumer<MovieProvider>(
         builder: (ctx, auth, child) => const MaterialApp(
             title: 'Movie',
             debugShowCheckedModeBanner: false,

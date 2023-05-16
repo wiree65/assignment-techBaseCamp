@@ -3,6 +3,8 @@ import '../components/constants.dart';
 import '../provider/movieProvider.dart';
 import 'package:provider/provider.dart';
 
+import 'moive_detail_screen.dart';
+
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
 
@@ -15,7 +17,7 @@ class _SearchState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final searchProvider = Provider.of<SearchProvider>(context);
+    final searchProvider = Provider.of<MovieProvider>(context);
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     final ScrollController _scrollController = ScrollController();
@@ -80,7 +82,10 @@ class _SearchState extends State<SearchScreen> {
                                   padding: const EdgeInsets.all(16),
                                   child: searchProvider.isLoading
                                       ? const Center(
-                                          child: CircularProgressIndicator())
+                                          child: CircularProgressIndicator(
+                                              valueColor:
+                                                  AlwaysStoppedAnimation<Color>(
+                                                      purplePrimary)))
                                       : searchProvider.searchResults.isEmpty
                                           ? const Text('No results found.')
                                           : ListView.builder(
@@ -90,6 +95,20 @@ class _SearchState extends State<SearchScreen> {
                                                 final movie = searchProvider
                                                     .searchResults[index];
                                                 return ListTile(
+                                                  onTap: () {
+                                                    print(movie.imdbID);
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) {
+                                                          return MovieDetailScreen(
+                                                            imdbID:
+                                                                movie.imdbID,
+                                                          );
+                                                        },
+                                                      ),
+                                                    );
+                                                  },
                                                   leading: movie.poster != 'N/A'
                                                       ? Container(
                                                           height: 160,

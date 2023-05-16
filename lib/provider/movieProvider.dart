@@ -1,15 +1,9 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
+import 'model.dart';
 
-class Movie {
-  final String title;
-  final String year;
-  final String poster;
-
-  Movie({required this.title, required this.year, required this.poster});
-}
-
-class SearchProvider with ChangeNotifier {
+class MovieProvider with ChangeNotifier {
   List<Movie> _searchResults = [];
   List<Movie> get searchResults => _searchResults;
 
@@ -32,6 +26,7 @@ class SearchProvider with ChangeNotifier {
           final searchResults =
               List<Movie>.from(data['Search'].map((result) => Movie(
                     title: result['Title'],
+                    imdbID: result['imdbID'],
                     year: result['Year'],
                     poster: result['Poster'],
                   )));
@@ -48,5 +43,14 @@ class SearchProvider with ChangeNotifier {
 
     _isLoading = false;
     notifyListeners();
+  }
+
+  Future<dynamic> fetchCategory(String imdbID) async {
+    dynamic response;
+    try {
+      response =
+          await _dio.get('', queryParameters: {'i': imdbID, 'plot': 'full'});
+    } catch (error) {}
+    return response;
   }
 }

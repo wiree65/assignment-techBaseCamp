@@ -4,7 +4,7 @@ import 'package:my_app/screens/landing_screen.dart';
 
 import '../components/button.dart';
 import '../components/constants.dart';
-// import '../provider/authenticateProvider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -29,12 +29,9 @@ bool _passwordVisible = false;
 bool _confirmPasswordVisible = false;
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  @override
   var emailCheck = '';
   var passwordCheck = '';
   var confirmPasswordCheck = '';
-  var firstnameCheck = '';
-  var lastnameCheck = '';
   var emailCheckUsed = '';
 
   bool passwordEqual = true;
@@ -42,8 +39,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   var emailCheckError = '';
   var passwordCheckError = '';
   var confirmPasswordCheckError = '';
-  var firstnameCheckError = '';
-  var lastnameCheckError = '';
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -55,25 +50,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final ScrollController _scrollController = ScrollController();
 
   void register() async {
-    try {
-      // showAlertDialog(context);
-      // await Provider.of<AuthenticateProvider>(context, listen: false).register(
-      //   emailController.text,
-      //   passwordController.text,
-      // );
-      // Navigator.pop(context);
-
-      // Navigator.pushReplacement(
-      //   context,
-      //   MaterialPageRoute(
-      //     builder: (context) {
-      //       return OtpScreen(
-      //           email: emailController.text.toString(),
-      //           password: passwordController.text.toString());
-      //     },
-      //   ),
-      // );
-    } catch (error) {
+    try {} catch (error) {
       Navigator.pop(context);
     }
   }
@@ -184,18 +161,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 ),
                               )
                             : Container(),
-                        emailCheckUsed != ''
-                            ? Container(
-                                width: width,
-                                padding:
-                                    const EdgeInsets.only(top: 20, left: 25),
-                                child: const Text(
-                                  'บัญชีนี้มีผู้ใช้แล้ว',
-                                  style: TextStyle(
-                                      fontSize: 18, color: Colors.red),
-                                ),
-                              )
-                            : Container(),
                         Container(
                             margin: const EdgeInsets.symmetric(vertical: 10),
                             padding: const EdgeInsets.symmetric(
@@ -237,18 +202,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   ),
                                   border: InputBorder.none),
                             )),
-                        passwordCheckError == 'error'
-                            ? Container(
-                                width: width,
-                                padding:
-                                    const EdgeInsets.only(top: 20, left: 25),
-                                child: const Text(
-                                  'โปรดกรอกรหัสผ่าน',
-                                  style: TextStyle(
-                                      fontSize: 18, color: Colors.red),
-                                ),
-                              )
-                            : Container(),
                         Container(
                             margin: const EdgeInsets.symmetric(vertical: 10),
                             padding: const EdgeInsets.symmetric(
@@ -283,6 +236,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     ),
                                     onPressed: () {
                                       setState(() {
+                                        passwordEqual = true;
                                         _confirmPasswordVisible =
                                             !_confirmPasswordVisible;
                                       });
@@ -290,15 +244,27 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   ),
                                   border: InputBorder.none),
                             )),
-                        confirmPasswordCheckError == 'error'
+                        emailCheck == 'error'
                             ? Container(
                                 width: width,
                                 padding:
-                                    const EdgeInsets.only(top: 20, left: 25),
+                                    const EdgeInsets.only(top: 10, left: 45),
                                 child: const Text(
-                                  'โปรดกรอกรหัสผ่านอีกครั้งเพื่อยืนยัน',
+                                  'please fill in email',
                                   style: TextStyle(
-                                      fontSize: 18, color: Colors.red),
+                                      fontSize: 16, color: Colors.red),
+                                ),
+                              )
+                            : Container(),
+                        passwordCheck == 'error'
+                            ? Container(
+                                width: width,
+                                padding:
+                                    const EdgeInsets.only(top: 10, left: 45),
+                                child: const Text(
+                                  'please fill in password',
+                                  style: TextStyle(
+                                      fontSize: 16, color: Colors.red),
                                 ),
                               )
                             : Container(),
@@ -306,21 +272,47 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ? Container(
                                 width: width,
                                 padding:
-                                    const EdgeInsets.only(top: 20, left: 25),
+                                    const EdgeInsets.only(top: 10, left: 45),
                                 child: const Text(
-                                  'รหัสผ่านไม่ตรงกัน',
+                                  'password does not match',
                                   style: TextStyle(
-                                      fontSize: 18, color: Colors.red),
+                                      fontSize: 16, color: Colors.red),
                                 ),
                               )
                             : Container(),
                         const SizedBox(
-                          height: 23,
+                          height: 15,
                         ),
                         Button(
                             onPress: () {
                               setState(() {
-                                register();
+                                if (emailController.text == '') {
+                                  emailCheck = 'error';
+                                }
+                                if (passwordController.text == '') {
+                                  passwordCheck = 'error';
+                                }
+
+                                if (passwordController.text ==
+                                    confirmPasswordController.text) {
+                                  setState(() {
+                                    passwordEqual = true;
+                                  });
+                                } else {
+                                  setState(() {
+                                    passwordEqual = false;
+                                  });
+                                }
+                                try {
+                                  FirebaseAuth.instance
+                                      .createUserWithEmailAndPassword(
+                                          email: emailController.text,
+                                          password: passwordController.text)
+                                      .then((value) => {print("user created")});
+                                } on FirebaseAuthException catch (e) {
+                                  print('Failed with error code: ${e.code}');
+                                  print(e.message);
+                                }
                               });
                             },
                             color: purplePrimary,

@@ -262,7 +262,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ? Container(
                                 width: width,
                                 padding: const EdgeInsets.only(
-                                    top: 10, left: 45, right: 45),
+                                    top: 10, left: 20, right: 20),
                                 child: Text(
                                   errorhandle,
                                   style: const TextStyle(
@@ -309,55 +309,63 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         const SizedBox(
                           height: 15,
                         ),
-                        Button(
-                            onPress: () {
-                              Utils.showAlertDialog(context);
-                              setState(() {
-                                if (emailController.text == '') {
-                                  emailCheck = 'error';
-                                }
-                                if (passwordController.text == '') {
-                                  passwordCheck = 'error';
-                                }
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20.0, right: 20),
+                          child: Button(
+                              width: width,
+                              onPress: () {
+                                Utils.showAlertDialog(context);
+                                setState(() {
+                                  if (emailController.text == '') {
+                                    emailCheck = 'error';
+                                  }
+                                  if (passwordController.text == '') {
+                                    passwordCheck = 'error';
+                                  }
 
-                                if (passwordController.text ==
-                                    confirmPasswordController.text) {
-                                  setState(() {
-                                    passwordEqual = true;
-                                  });
-                                } else {
-                                  setState(() {
-                                    passwordEqual = false;
-                                  });
-                                }
-
-                                FirebaseAuth.instance
-                                    .createUserWithEmailAndPassword(
-                                        email: emailController.text,
-                                        password: passwordController.text)
-                                    .then((value) => {
-                                          Navigator.pushReplacement(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) {
-                                                return const LoginScreen();
-                                              },
-                                            ),
-                                          )
-                                        })
-                                    // ignore: invalid_return_type_for_catch_error
-                                    .catchError((e) => {
-                                          Navigator.pop(context),
-                                          setState(() {
-                                            errorhandle = e.message;
-                                          })
-                                        });
-                              });
-                            },
-                            color: purplePrimary,
-                            textColor: whitePrimary,
-                            fontsize: 15.00,
-                            title: 'Create Account'),
+                                  if (passwordController.text ==
+                                      confirmPasswordController.text) {
+                                    setState(() {
+                                      passwordEqual = true;
+                                    });
+                                  } else {
+                                    setState(() {
+                                      passwordEqual = false;
+                                    });
+                                  }
+                                  if (passwordController.text ==
+                                      confirmPasswordController.text) {
+                                    FirebaseAuth.instance
+                                        .createUserWithEmailAndPassword(
+                                            email: emailController.text,
+                                            password: passwordController.text)
+                                        .then((value) => {
+                                              Navigator.pushReplacement(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) {
+                                                    return const LoginScreen();
+                                                  },
+                                                ),
+                                              )
+                                            })
+                                        // ignore: invalid_return_type_for_catch_error
+                                        .catchError((e) => {
+                                              Navigator.pop(context),
+                                              setState(() {
+                                                errorhandle = e.message;
+                                              })
+                                            });
+                                  } else {
+                                    Navigator.pop(context);
+                                  }
+                                });
+                              },
+                              color: purplePrimary,
+                              textColor: whitePrimary,
+                              fontsize: 15.00,
+                              title: 'Create Account'),
+                        ),
                         const SizedBox(
                           height: 10,
                         ),

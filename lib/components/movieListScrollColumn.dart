@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'buttonGenre.dart';
 import 'constants.dart';
 
 class MoiveListScrollColumn extends StatelessWidget {
@@ -26,7 +25,7 @@ class MoiveListScrollColumn extends StatelessWidget {
                 SizedBox(
                   child: Image.asset(
                     'assets/images/unnamed.jpeg',
-                    width: 150,
+                    width: width * 0.35,
                     fit: BoxFit.fitWidth,
                   ),
                 ),
@@ -67,21 +66,6 @@ class MoiveListScrollColumn extends StatelessWidget {
                         ]),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 8.0, left: 10),
-                        child: SizedBox(
-                            width: width * 0.5,
-                            child: Wrap(
-                              spacing: 4.0, // gap between adjacent chips
-                              runSpacing: 10.0, // gap between lines
-                              children: [
-                                for (int i = 0; i < 3; i++)
-                                  ButtonGenre(
-                                    title: list[i],
-                                  )
-                              ],
-                            )),
-                      ),
-                      Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Row(children: [
                           Icon(
@@ -96,6 +80,26 @@ class MoiveListScrollColumn extends StatelessWidget {
                               style: TextStyle(
                                   fontSize: 15, color: blackPrimaryFont),
                             ),
+                          ),
+                        ]),
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.only(left: 15.0),
+                        child: Row(children: [
+                          Text(
+                            'Released since : 2014',
+                            style: TextStyle(
+                                fontSize: 15, color: blackPrimaryFont),
+                          ),
+                        ]),
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.only(left: 15.0, top: 10),
+                        child: Row(children: [
+                          Text(
+                            'Genre: Action, Drama',
+                            style: TextStyle(
+                                fontSize: 15, color: blackPrimaryFont),
                           ),
                         ]),
                       ),

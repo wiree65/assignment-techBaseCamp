@@ -124,10 +124,10 @@ class _LandingState extends State<LandingScreen> {
                           ),
                           MoiveListScrollRow(width: width),
                           const HeaderWithButton(
-                            headerTitle: 'Moive',
+                            headerTitle: 'Old Moive',
                             buttonTitle: 'See more',
                           ),
-                          for (int i = 0; i < genre.length; i++)
+                          for (int i = 0; i < 10; i++)
                             MoiveListScrollColumn(width: width, list: genre),
                         ]),
                   ),

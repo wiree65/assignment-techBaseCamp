@@ -44,7 +44,7 @@ class _LoginState extends State<LoginScreen> {
                         height: 20,
                       ),
                       Container(
-                          padding: const EdgeInsets.only(left: 45),
+                          padding: const EdgeInsets.only(left: 20, right: 20),
                           width: width,
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,72 +67,77 @@ class _LoginState extends State<LoginScreen> {
                                     ),
                                   ),
                                 ),
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const Padding(
-                                      padding: EdgeInsets.only(top: 14.5),
-                                      child: Text(
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 10.0),
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      const Text(
                                         'new here?',
                                         style: TextStyle(
                                           fontSize: 16,
                                           fontFamily: 'Quicksand',
                                         ),
                                       ),
-                                    ),
-                                    TextButton(
-                                        onPressed: () {
-                                          setState(() {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) {
-                                                  return const RegisterScreen();
-                                                },
-                                              ),
-                                            );
-                                          });
-                                        },
-                                        child: const Text(
-                                          'create an account',
-                                          style: TextStyle(
-                                              fontSize: 16,
-                                              fontFamily: 'Quicksand',
-                                              decoration:
-                                                  TextDecoration.underline,
-                                              color: Color(0xFF6D65AD),
-                                              fontWeight: FontWeight.w600),
-                                        )),
-                                  ],
+                                      TextButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) {
+                                                    return const RegisterScreen();
+                                                  },
+                                                ),
+                                              );
+                                            });
+                                          },
+                                          child: const Text(
+                                            'create an account',
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                fontFamily: 'Quicksand',
+                                                decoration:
+                                                    TextDecoration.underline,
+                                                color: Color(0xFF6D65AD),
+                                                fontWeight: FontWeight.w600),
+                                          )),
+                                    ],
+                                  ),
                                 ),
                               ])),
                       const SizedBox(
                         height: 10,
                       ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        child: Container(
+                            margin: const EdgeInsets.symmetric(vertical: 10),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 14, vertical: 5),
+                            width: width,
+                            height: 55,
+                            decoration: BoxDecoration(
+                              color: greyPrimary,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: TextField(
+                              keyboardType: TextInputType.emailAddress,
+                              controller: emailController,
+                              decoration: const InputDecoration(
+                                  hintText: 'Email',
+                                  hintStyle: TextStyle(
+                                      fontFamily: 'Quicksand', fontSize: 16),
+                                  border: InputBorder.none),
+                            )),
+                      ),
                       Container(
-                          margin: const EdgeInsets.symmetric(vertical: 10),
+                          margin: const EdgeInsets.only(
+                              top: 10, left: 20, right: 20),
                           padding: const EdgeInsets.symmetric(
                               horizontal: 14, vertical: 5),
-                          width: 325,
-                          height: 55,
-                          decoration: BoxDecoration(
-                            color: greyPrimary,
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: TextField(
-                            keyboardType: TextInputType.emailAddress,
-                            controller: emailController,
-                            decoration: const InputDecoration(
-                                hintText: 'Email',
-                                hintStyle: TextStyle(
-                                    fontFamily: 'Quicksand', fontSize: 16),
-                                border: InputBorder.none),
-                          )),
-                      Container(
-                          margin: const EdgeInsets.only(top: 10),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 14, vertical: 5),
-                          width: 325,
+                          width: width,
                           height: 55,
                           decoration: BoxDecoration(
                             color: greyPrimary,
@@ -172,67 +177,46 @@ class _LoginState extends State<LoginScreen> {
                               ),
                             )
                           : Container(),
-                      Container(
-                        width: width,
-                        alignment: Alignment.centerRight,
-                        child: Padding(
-                          padding: const EdgeInsets.only(right: 35.0),
-                          child: TextButton(
-                              onPressed: () {
-                                setState(() {
-                                  // Navigator.push(
-                                  //   context,
-                                  //   // MaterialPageRoute(
-                                  //   //   builder: (context) {
-                                  //   //     return ForgetPasswordScreen();
-                                  //   //   },
-                                  //   // ),
-                                  // );
-                                });
-                              },
-                              child: const Text(
-                                'Forget password?',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontFamily: 'Quicksand',
-                                  color: Color(0xFF707070),
-                                ),
-                              )),
-                        ),
+                      const SizedBox(
+                        height: 24,
                       ),
-                      Button(
-                          color: purplePrimary,
-                          textColor: whitePrimary,
-                          fontsize: 16.00,
-                          onPress: () async {
-                            try {
-                              Utils.showAlertDialog(context);
-                              final User? firebaseUser = (await FirebaseAuth
-                                      .instance
-                                      .signInWithEmailAndPassword(
-                                          email: emailController.text,
-                                          password: passwordController.text))
-                                  .user;
-                              if (firebaseUser != null) {
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) {
-                                      return const LandingScreen();
-                                    },
-                                  ),
-                                );
-                              } else {
-                                print('Check email and password');
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        child: Button(
+                            width: width,
+                            color: purplePrimary,
+                            textColor: whitePrimary,
+                            fontsize: 16.00,
+                            onPress: () async {
+                              try {
+                                Utils.showAlertDialog(context);
+                                final User? firebaseUser = (await FirebaseAuth
+                                        .instance
+                                        .signInWithEmailAndPassword(
+                                            email: emailController.text,
+                                            password: passwordController.text))
+                                    .user;
+                                if (firebaseUser != null) {
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return const LandingScreen();
+                                      },
+                                    ),
+                                  );
+                                } else {
+                                  print('Check email and password');
+                                }
+                              } on FirebaseAuthException catch (e) {
+                                Navigator.pop(context);
+                                setState(() {
+                                  errorhandle = e.message!;
+                                });
                               }
-                            } on FirebaseAuthException catch (e) {
-                              Navigator.pop(context);
-                              setState(() {
-                                errorhandle = e.message!;
-                              });
-                            }
-                          },
-                          title: 'Login'),
+                            },
+                            title: 'Login'),
+                      ),
                       const SizedBox(
                         height: 23,
                       ),

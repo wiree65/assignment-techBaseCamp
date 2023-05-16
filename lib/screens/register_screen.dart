@@ -91,7 +91,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           height: 10,
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 48.0),
+                          padding: const EdgeInsets.only(left: 20.0),
                           child: Container(
                             alignment: Alignment.topLeft,
                             child: const Text(
@@ -108,7 +108,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           height: 10,
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 48.0, top: 8.0),
+                          padding: const EdgeInsets.only(left: 20.0, top: 8.0),
                           child: Container(
                             alignment: Alignment.topLeft,
                             child: const Text(
@@ -122,36 +122,39 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                         ),
                         const SizedBox(
-                          height: 20,
+                          height: 15,
                         ),
-                        Container(
-                            margin: const EdgeInsets.symmetric(vertical: 10),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 14, vertical: 5),
-                            width: 325,
-                            height: 55,
-                            decoration: BoxDecoration(
-                              color: greyPrimary,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: TextField(
-                              onChanged: (text) {
-                                setState(() {
-                                  emailCheck = text;
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20.0, right: 20),
+                          child: Container(
+                              margin: const EdgeInsets.symmetric(vertical: 10),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 14, vertical: 5),
+                              width: width,
+                              height: 55,
+                              decoration: BoxDecoration(
+                                color: greyPrimary,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: TextField(
+                                onChanged: (text) {
                                   setState(() {
-                                    errorhandle = '';
-                                    emailCheckError = '';
+                                    emailCheck = text;
+                                    setState(() {
+                                      errorhandle = '';
+                                      emailCheckError = '';
+                                    });
                                   });
-                                });
-                              },
-                              keyboardType: TextInputType.emailAddress,
-                              controller: emailController,
-                              decoration: const InputDecoration(
-                                  hintText: 'Email',
-                                  hintStyle: TextStyle(
-                                      fontFamily: 'Quicksand', fontSize: 15),
-                                  border: InputBorder.none),
-                            )),
+                                },
+                                keyboardType: TextInputType.emailAddress,
+                                controller: emailController,
+                                decoration: const InputDecoration(
+                                    hintText: 'Email',
+                                    hintStyle: TextStyle(
+                                        fontFamily: 'Quicksand', fontSize: 15),
+                                    border: InputBorder.none),
+                              )),
+                        ),
                         emailCheckError == 'error'
                             ? Container(
                                 width: width,
@@ -164,91 +167,97 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 ),
                               )
                             : Container(),
-                        Container(
-                            margin: const EdgeInsets.symmetric(vertical: 10),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 14, vertical: 5),
-                            width: 325,
-                            height: 55,
-                            decoration: BoxDecoration(
-                              color: greyPrimary,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: TextField(
-                              onChanged: (text) {
-                                passwordCheck = text;
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20.0, right: 20),
+                          child: Container(
+                              margin: const EdgeInsets.symmetric(vertical: 10),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 14, vertical: 5),
+                              width: width,
+                              height: 55,
+                              decoration: BoxDecoration(
+                                color: greyPrimary,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: TextField(
+                                onChanged: (text) {
+                                  passwordCheck = text;
 
-                                setState(() {
-                                  passwordCheckError = '';
-                                  errorhandle = '';
-                                  passwordEqual = true;
-                                });
-                              },
-                              controller: passwordController,
-                              obscureText: !_passwordVisible,
-                              decoration: InputDecoration(
-                                  hintText: 'Password',
-                                  hintStyle: const TextStyle(
-                                      fontFamily: 'Quicksand', fontSize: 15),
-                                  suffixIcon: IconButton(
-                                    icon: Icon(
-                                      _passwordVisible
-                                          ? Icons.visibility_off
-                                          : Icons.visibility,
-                                      color: const Color.fromARGB(
-                                          255, 121, 121, 121),
+                                  setState(() {
+                                    passwordCheckError = '';
+                                    errorhandle = '';
+                                    passwordEqual = true;
+                                  });
+                                },
+                                controller: passwordController,
+                                obscureText: !_passwordVisible,
+                                decoration: InputDecoration(
+                                    hintText: 'Password',
+                                    hintStyle: const TextStyle(
+                                        fontFamily: 'Quicksand', fontSize: 15),
+                                    suffixIcon: IconButton(
+                                      icon: Icon(
+                                        _passwordVisible
+                                            ? Icons.visibility_off
+                                            : Icons.visibility,
+                                        color: const Color.fromARGB(
+                                            255, 121, 121, 121),
+                                      ),
+                                      onPressed: () {
+                                        setState(() {
+                                          _passwordVisible = !_passwordVisible;
+                                        });
+                                      },
                                     ),
-                                    onPressed: () {
-                                      setState(() {
-                                        _passwordVisible = !_passwordVisible;
-                                      });
-                                    },
-                                  ),
-                                  border: InputBorder.none),
-                            )),
-                        Container(
-                            margin: const EdgeInsets.symmetric(vertical: 10),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 14, vertical: 5),
-                            width: 325,
-                            height: 55,
-                            decoration: BoxDecoration(
-                              color: greyPrimary,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: TextField(
-                              onChanged: (text) {
-                                confirmPasswordCheck = text;
-                                setState(() {
-                                  confirmPasswordCheckError = '';
-                                  passwordEqual = true;
-                                  errorhandle = '';
-                                });
-                              },
-                              controller: confirmPasswordController,
-                              obscureText: !_confirmPasswordVisible,
-                              decoration: InputDecoration(
-                                  hintText: 'Confirm Password',
-                                  hintStyle: const TextStyle(
-                                      fontFamily: 'Quicksand', fontSize: 15),
-                                  suffixIcon: IconButton(
-                                    icon: Icon(
-                                      _confirmPasswordVisible
-                                          ? Icons.visibility_off
-                                          : Icons.visibility,
-                                      color: const Color.fromARGB(
-                                          255, 121, 121, 121),
+                                    border: InputBorder.none),
+                              )),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20.0, right: 20),
+                          child: Container(
+                              margin: const EdgeInsets.symmetric(vertical: 10),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 14, vertical: 5),
+                              width: width,
+                              height: 55,
+                              decoration: BoxDecoration(
+                                color: greyPrimary,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: TextField(
+                                onChanged: (text) {
+                                  confirmPasswordCheck = text;
+                                  setState(() {
+                                    confirmPasswordCheckError = '';
+                                    passwordEqual = true;
+                                    errorhandle = '';
+                                  });
+                                },
+                                controller: confirmPasswordController,
+                                obscureText: !_confirmPasswordVisible,
+                                decoration: InputDecoration(
+                                    hintText: 'Confirm Password',
+                                    hintStyle: const TextStyle(
+                                        fontFamily: 'Quicksand', fontSize: 15),
+                                    suffixIcon: IconButton(
+                                      icon: Icon(
+                                        _confirmPasswordVisible
+                                            ? Icons.visibility_off
+                                            : Icons.visibility,
+                                        color: const Color.fromARGB(
+                                            255, 121, 121, 121),
+                                      ),
+                                      onPressed: () {
+                                        setState(() {
+                                          passwordEqual = true;
+                                          _confirmPasswordVisible =
+                                              !_confirmPasswordVisible;
+                                        });
+                                      },
                                     ),
-                                    onPressed: () {
-                                      setState(() {
-                                        passwordEqual = true;
-                                        _confirmPasswordVisible =
-                                            !_confirmPasswordVisible;
-                                      });
-                                    },
-                                  ),
-                                  border: InputBorder.none),
-                            )),
+                                    border: InputBorder.none),
+                              )),
+                        ),
                         errorhandle != ''
                             ? Container(
                                 width: width,
@@ -354,10 +363,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             const Padding(
-                              padding: EdgeInsets.only(top: 14.5),
+                              padding: EdgeInsets.only(top: 0),
                               child: Text(
                                 'Already have an account?',
                                 style: TextStyle(

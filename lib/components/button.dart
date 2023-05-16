@@ -11,14 +11,16 @@ class Button extends StatelessWidget {
   final radius;
 
   const Button(
-      {this.color,
+      {Key? key,
+      this.color,
       this.onPress,
       this.title,
       this.textColor,
       this.fontsize,
       this.height = 50.0,
       this.width = 325.0,
-      this.radius = 8.0});
+      this.radius = 8.0})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

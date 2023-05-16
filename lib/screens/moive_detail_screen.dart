@@ -74,7 +74,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                   leading: IconButton(
                     icon: const Icon(Icons.arrow_back_ios_new_outlined,
                         color: purplePrimary),
-                    onPressed: () => Navigator.of(context).pop(),
+                    onPressed: () => {Navigator.of(context).pop()},
                   ),
                   title: const Text(
                     "Moive Detail",

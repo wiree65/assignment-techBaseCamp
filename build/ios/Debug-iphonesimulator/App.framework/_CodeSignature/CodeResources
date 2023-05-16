@@ -28,42 +28,6 @@
 		<data>
 		NLcd+TWlgzAPyO/+iZW35xoNZQw=
 		</data>
-		<key>flutter_assets/assets/images/logo.png</key>
-		<data>
-		IHqIb4g6d54OiaeSlcBff83lSvs=
-		</data>
-		<key>flutter_assets/assets/images/mock.png</key>
-		<data>
-		26CiSpdWjPOyvZ91icFgf0rpSVk=
-		</data>
-		<key>flutter_assets/assets/images/mock1.png</key>
-		<data>
-		t47MkAw0XkWLXNC567pSX1dZ8ws=
-		</data>
-		<key>flutter_assets/assets/images/mock2.png</key>
-		<data>
-		ExJHG4DFKj9zOS8OqVy4619dVh8=
-		</data>
-		<key>flutter_assets/assets/images/notificaiton.png</key>
-		<data>
-		WOC2kx96F+OQgRSBEca2A/9rRPo=
-		</data>
-		<key>flutter_assets/assets/images/profile.jpeg</key>
-		<data>
-		Fgv5qkgjYpGC2sqhkej5i4aeLIg=
-		</data>
-		<key>flutter_assets/assets/images/profile.png</key>
-		<data>
-		hO6M64mlIEzmTAf1eymF4KiNBwA=
-		</data>
-		<key>flutter_assets/assets/images/reciept.png</key>
-		<data>
-		FYwSixohtTO8FONToeHlX+qApNk=
-		</data>
-		<key>flutter_assets/assets/images/red-mark.png</key>
-		<data>
-		OY++xHSjNBQSFSmbjWsrsBS7Cxc=
-		</data>
 		<key>flutter_assets/assets/images/unnamed.jpeg</key>
 		<data>
 		snOZ4A9/VkmPilCMOdHWSQRmB04=
@@ -78,7 +42,7 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		tSt/c/IvSPBYHfBhe6XLWmFmIRo=
+		S1QwD28+Qo5O9KICnNmassU0aoU=
 		</data>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -126,69 +90,6 @@
 			E8LsDVN0k/Xzp1Gz7cpjYrJHGrBvtKYAhVXrbC6n5HE=
 			</data>
 		</dict>
-		<key>flutter_assets/assets/images/logo.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			Gd6oUMCxEw/5Keug7w/Rn0ULOi0E/kegVy9nAmPviFQ=
-			</data>
-		</dict>
-		<key>flutter_assets/assets/images/mock.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			9SedtihXRr5mtepRbUcVsrlnm0vyFVYBywLNOvJUv/k=
-			</data>
-		</dict>
-		<key>flutter_assets/assets/images/mock1.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			J6KfHnYeAKeowPW+MQZRYOnujSEJpIkI2yWbbmdVPB4=
-			</data>
-		</dict>
-		<key>flutter_assets/assets/images/mock2.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			ST5c8IpeOA28h22EUb0HojfyA7iIvajhVYM+tBNpRhA=
-			</data>
-		</dict>
-		<key>flutter_assets/assets/images/notificaiton.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			HG3KIQTRJxIBYLYL62REKO7K9BaAGP4ElTRgu/G0OQM=
-			</data>
-		</dict>
-		<key>flutter_assets/assets/images/profile.jpeg</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			NnB1h2qF34zqne7UF1gNqN3FVkK4FJDXiulRqWgDvwY=
-			</data>
-		</dict>
-		<key>flutter_assets/assets/images/profile.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			y4gXBf9dLK5AYenb5S+pgj912nNABvBz/SU4SrVLxx8=
-			</data>
-		</dict>
-		<key>flutter_assets/assets/images/reciept.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			umSgXqL0NyAjCRW6pVhKhpwtn2MOLD5i4MoGJCs6WXc=
-			</data>
-		</dict>
-		<key>flutter_assets/assets/images/red-mark.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			R88Ip4o2Mm8zNXhDnKkMl0Uc2SdTLSNVkfVzY5gPPyk=
-			</data>
-		</dict>
 		<key>flutter_assets/assets/images/unnamed.jpeg</key>
 		<dict>
 			<key>hash2</key>
@@ -214,7 +115,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			5bKqhZZVA2TxI8/T2tL+FZ8RbVU9amF/pxa/fSG/MlE=
+			olCyGuMvt2l2t6G09kuDrY0/TkZe3r3ShSX3x6Psnxg=
 			</data>
 		</dict>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>

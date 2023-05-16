@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/screens/login_screen.dart';
 import 'package:my_app/screens/search_screen.dart';
 
 import '../components/constants.dart';
 import '../components/headerWithButton.dart';
 import '../components/movieListScrollColumn.dart';
 import '../components/movieListScrollRow.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LandingScreen extends StatefulWidget {
   const LandingScreen({Key? key}) : super(key: key);
@@ -16,9 +18,12 @@ class LandingScreen extends StatefulWidget {
 class _LandingState extends State<LandingScreen> {
   final ScrollController _scrollController = ScrollController();
 
+  User? user;
   @override
   void initState() {
     super.initState();
+    user = FirebaseAuth.instance.currentUser;
+    print(user?.email.toString());
   }
 
   @override
@@ -29,11 +34,6 @@ class _LandingState extends State<LandingScreen> {
       "Action",
       "Crime",
       "Comedy",
-      "Drama",
-      "Honor",
-      "Thriller",
-      "Romance",
-      "Western"
     ];
 
     return Container(
@@ -65,15 +65,35 @@ class _LandingState extends State<LandingScreen> {
                                         backgroundColor: Colors.grey.shade300,
                                         child: const Text(''),
                                       ),
-                                      const Padding(
-                                        padding: EdgeInsets.only(left: 13.0),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 13.0),
                                         child: Text(
-                                          'Hi Wirawat',
-                                          style: TextStyle(
+                                          "Hi " +
+                                              user!.email
+                                                  .toString()
+                                                  .split('@')[0] +
+                                              " !",
+                                          style: const TextStyle(
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold,
                                               color: blackPrimaryFont),
                                         ),
+                                      ),
+                                      IconButton(
+                                        icon: const Icon(Icons.logout,
+                                            size: 25, color: purplePrimary),
+                                        onPressed: () async {
+                                          await FirebaseAuth.instance.signOut();
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) {
+                                                return const LoginScreen();
+                                              },
+                                            ),
+                                          );
+                                        },
                                       ),
                                     ],
                                   ),
@@ -107,7 +127,7 @@ class _LandingState extends State<LandingScreen> {
                             headerTitle: 'Moive',
                             buttonTitle: 'See more',
                           ),
-                          for (int i = 0; i < 10; i++)
+                          for (int i = 0; i < genre.length; i++)
                             MoiveListScrollColumn(width: width, list: genre),
                         ]),
                   ),

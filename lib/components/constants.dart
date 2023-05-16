@@ -4,10 +4,9 @@ const yellowPrimary = Color(0xFFEDC253);
 const blackPrimaryFont = Color(0xFF343434);
 const greySecondary = Color(0xFFEDEDED);
 
-const BlackPrimaryFont = Color(0xFF343434);
 const blackSecondaryFont = Color(0xFF707070);
 
-const purplePrimary = Color(0xFF92A2EC);
+const purplePrimary = Color.fromARGB(255, 110, 127, 204);
 const purpleSecondary = Color(0xFFDCD9F1);
 
 const whitePrimary = Color(0xFFF9F9F9);

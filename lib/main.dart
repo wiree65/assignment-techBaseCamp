@@ -13,9 +13,14 @@ void main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return
@@ -29,20 +34,7 @@ class MyApp extends StatelessWidget {
         builder: (ctx, auth, child) => const MaterialApp(
             title: 'Movie',
             debugShowCheckedModeBanner: false,
-            home: LoginScreen()
-
-            // auth.isAuth
-            //     ? const LandingScreen(
-            //         sectionIndex: 0,
-            //       )
-            //     : FutureBuilder(
-            //         future: auth.tryAutoLogin(),
-            //         builder: (ctx, authResultSnapshot) =>
-            //             authResultSnapshot.connectionState ==
-            //                     ConnectionState.waiting
-            //                 ? const SplashScreen()
-            //                 : const LoginScreen(),
-            ),
+            home: LoginScreen()),
       ),
     );
   }

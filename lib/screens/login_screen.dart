@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/config/string.dart';
-import 'package:my_app/screens/landing_screen.dart';
 import '../components/button.dart';
 import '../components/constants.dart';
+import '../components/utils.dart';
+import 'landing_screen.dart';
 import 'register_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -18,45 +19,7 @@ class _LoginState extends State<LoginScreen> {
   final ScrollController _scrollController = ScrollController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  String errorMessage = incorrectAuthException;
-  bool isError = false;
-  void login(BuildContext context) async {
-    print(emailController.text + ' ' + passwordController.text);
-    try {
-      // Utils.showAlertDialog(context);
-      // await Provider.of<AuthenticateProvider>(context, listen: false).login(
-      //     emailController.text.toString(), passwordController.text.toString());
-      // // ProfileScreen(email: emailController.text.toString());
-      // Navigator.push(
-      //   context,
-      //   MaterialPageRoute(
-      //     builder: (context) {
-      //       return const LandingScreen(sectionIndex: 0);
-      //     },
-      //   ),
-      // );
-    } catch (error) {
-      print(error);
-      Navigator.pop(context);
-      if (error.toString().contains('401')) {
-        setState(() {
-          isError = true;
-        });
-      }
-      if (error.toString().contains('403')) {
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(
-        //     builder: (context) {
-        //       return OtpScreen(
-        //           email: emailController.text.toString(),
-        //           password: passwordController.text.toString());
-        //     },
-        //   ),
-        // );
-      }
-    }
-  }
+  String errorhandle = '';
 
   @override
   Widget build(BuildContext context) {
@@ -90,17 +53,16 @@ class _LoginState extends State<LoginScreen> {
                                   'Movie Assignment',
                                   style: TextStyle(
                                       // color: kPrimaryFont,
-                                      fontSize: 24,
+                                      fontSize: 25,
                                       fontFamily: 'Quicksand',
                                       fontWeight: FontWeight.w600),
                                 ),
                                 const Padding(
-                                  padding: EdgeInsets.only(top: 8.0),
+                                  padding: EdgeInsets.only(top: 15.0),
                                   child: Text(
                                     'login with email to start watching movie',
                                     style: TextStyle(
-                                      // color: kPrimaryFont,
-                                      fontSize: 14,
+                                      fontSize: 16,
                                       fontFamily: 'Quicksand',
                                     ),
                                   ),
@@ -113,8 +75,7 @@ class _LoginState extends State<LoginScreen> {
                                       child: Text(
                                         'new here?',
                                         style: TextStyle(
-                                          // color: kPrimaryFont,
-                                          fontSize: 14,
+                                          fontSize: 16,
                                           fontFamily: 'Quicksand',
                                         ),
                                       ),
@@ -135,7 +96,7 @@ class _LoginState extends State<LoginScreen> {
                                         child: const Text(
                                           'create an account',
                                           style: TextStyle(
-                                              fontSize: 14,
+                                              fontSize: 16,
                                               fontFamily: 'Quicksand',
                                               decoration:
                                                   TextDecoration.underline,
@@ -164,7 +125,7 @@ class _LoginState extends State<LoginScreen> {
                             decoration: const InputDecoration(
                                 hintText: 'Email',
                                 hintStyle: TextStyle(
-                                    fontFamily: 'Quicksand', fontSize: 15),
+                                    fontFamily: 'Quicksand', fontSize: 16),
                                 border: InputBorder.none),
                           )),
                       Container(
@@ -183,7 +144,7 @@ class _LoginState extends State<LoginScreen> {
                             decoration: InputDecoration(
                                 hintText: 'Password',
                                 hintStyle: const TextStyle(
-                                    fontFamily: 'Quicksand', fontSize: 15),
+                                    fontFamily: 'Quicksand', fontSize: 16),
                                 suffixIcon: IconButton(
                                   icon: Icon(
                                     _passwordVisible
@@ -199,21 +160,17 @@ class _LoginState extends State<LoginScreen> {
                                 ),
                                 border: InputBorder.none),
                           )),
-                      isError
-                          ? Row(children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 12.0, left: 48),
-                                child: Text(
-                                  errorMessage,
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                    fontFamily: 'Quicksand',
-                                    color: Color.fromARGB(255, 197, 38, 38),
-                                  ),
-                                ),
+                      errorhandle != ''
+                          ? Container(
+                              width: width,
+                              padding: const EdgeInsets.only(
+                                  top: 20, left: 45, right: 45),
+                              child: Text(
+                                errorhandle,
+                                style: const TextStyle(
+                                    fontSize: 16, color: Colors.red),
                               ),
-                            ])
+                            )
                           : Container(),
                       Container(
                         width: width,
@@ -247,20 +204,33 @@ class _LoginState extends State<LoginScreen> {
                           color: purplePrimary,
                           textColor: whitePrimary,
                           fontsize: 16.00,
-                          onPress: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return const LandingScreen();
-                                },
-                              ),
-                            );
-                            // setState(() {
-                            //   isError = false;
-                            // });
-                            // Navigator.pop(context);
-                            // login(context);
+                          onPress: () async {
+                            try {
+                              Utils.showAlertDialog(context);
+                              final User? firebaseUser = (await FirebaseAuth
+                                      .instance
+                                      .signInWithEmailAndPassword(
+                                          email: emailController.text,
+                                          password: passwordController.text))
+                                  .user;
+                              if (firebaseUser != null) {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return const LandingScreen();
+                                    },
+                                  ),
+                                );
+                              } else {
+                                print('Check email and password');
+                              }
+                            } on FirebaseAuthException catch (e) {
+                              Navigator.pop(context);
+                              setState(() {
+                                errorhandle = e.message!;
+                              });
+                            }
                           },
                           title: 'Login'),
                       const SizedBox(

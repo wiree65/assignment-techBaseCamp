@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:my_app/screens/landing_screen.dart';
+import 'package:my_app/screens/login_screen.dart';
 
 import '../components/button.dart';
 import '../components/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
+import '../components/utils.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -300,6 +302,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         Button(
                             onPress: () {
+                              Utils.showAlertDialog(context);
                               setState(() {
                                 if (emailController.text == '') {
                                   emailCheck = 'error';
@@ -323,8 +326,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     .createUserWithEmailAndPassword(
                                         email: emailController.text,
                                         password: passwordController.text)
-                                    .then((value) => {print("user created")})
+                                    .then((value) => {
+                                          Navigator.pushReplacement(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) {
+                                                return const LoginScreen();
+                                              },
+                                            ),
+                                          )
+                                        })
+                                    // ignore: invalid_return_type_for_catch_error
                                     .catchError((e) => {
+                                          Navigator.pop(context),
                                           setState(() {
                                             errorhandle = e.message;
                                           })
@@ -360,7 +374,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) {
-                                          return const LandingScreen();
+                                          return const LoginScreen();
                                         },
                                       ),
                                     );

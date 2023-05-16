@@ -61,7 +61,7 @@ class MoiveListScrollColumn extends StatelessWidget {
                             child: Text(
                               '10/10 IMDb',
                               style: TextStyle(
-                                  fontSize: 15, color: BlackPrimaryFont),
+                                  fontSize: 15, color: blackPrimaryFont),
                             ),
                           ),
                         ]),
@@ -94,7 +94,7 @@ class MoiveListScrollColumn extends StatelessWidget {
                             child: Text(
                               '2 h 34 m',
                               style: TextStyle(
-                                  fontSize: 15, color: BlackPrimaryFont),
+                                  fontSize: 15, color: blackPrimaryFont),
                             ),
                           ),
                         ]),

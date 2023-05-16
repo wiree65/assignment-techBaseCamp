@@ -32,7 +32,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   var emailCheck = '';
   var passwordCheck = '';
   var confirmPasswordCheck = '';
-  var emailCheckUsed = '';
+  var errorhandle = '';
 
   bool passwordEqual = true;
 
@@ -137,6 +137,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 setState(() {
                                   emailCheck = text;
                                   setState(() {
+                                    errorhandle = '';
                                     emailCheckError = '';
                                   });
                                 });
@@ -177,6 +178,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                                 setState(() {
                                   passwordCheckError = '';
+                                  errorhandle = '';
                                   passwordEqual = true;
                                 });
                               },
@@ -218,6 +220,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 setState(() {
                                   confirmPasswordCheckError = '';
                                   passwordEqual = true;
+                                  errorhandle = '';
                                 });
                               },
                               controller: confirmPasswordController,
@@ -244,6 +247,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   ),
                                   border: InputBorder.none),
                             )),
+                        errorhandle != ''
+                            ? Container(
+                                width: width,
+                                padding: const EdgeInsets.only(
+                                    top: 10, left: 45, right: 45),
+                                child: Text(
+                                  errorhandle,
+                                  style: const TextStyle(
+                                      fontSize: 16, color: Colors.red),
+                                ),
+                              )
+                            : Container(),
                         emailCheck == 'error'
                             ? Container(
                                 width: width,
@@ -303,16 +318,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     passwordEqual = false;
                                   });
                                 }
-                                try {
-                                  FirebaseAuth.instance
-                                      .createUserWithEmailAndPassword(
-                                          email: emailController.text,
-                                          password: passwordController.text)
-                                      .then((value) => {print("user created")});
-                                } on FirebaseAuthException catch (e) {
-                                  print('Failed with error code: ${e.code}');
-                                  print(e.message);
-                                }
+
+                                FirebaseAuth.instance
+                                    .createUserWithEmailAndPassword(
+                                        email: emailController.text,
+                                        password: passwordController.text)
+                                    .then((value) => {print("user created")})
+                                    .catchError((e) => {
+                                          setState(() {
+                                            errorhandle = e.message;
+                                          })
+                                        });
                               });
                             },
                             color: purplePrimary,

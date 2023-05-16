@@ -56,7 +56,7 @@ extern NSString* const FlutterDefaultInitialRoute;
  * One of these methods must be invoked before calling `-setViewController:`.
  */
 FLUTTER_DARWIN_EXPORT
-@interface FlutterEngine : NSObject <FlutterTextureRegistry, FlutterPluginRegistry>
+@interface FlutterEngine : NSObject <FlutterPluginRegistry>
 
 /**
  * Default initializer for a FlutterEngine.
@@ -219,8 +219,9 @@ FLUTTER_DARWIN_EXPORT
  *   FlutterDefaultDartEntrypoint (or nil); this will default to `main()`.  If it is not the app's
  *   main() function, that function must be decorated with `@pragma(vm:entry-point)` to ensure the
  *   method is not tree-shaken by the Dart compiler.
- * @param uri The URI of the Dart library which contains the entrypoint method.  IF nil,
- *   this will default to the same library as the `main()` function in the Dart program.
+ * @param uri The URI of the Dart library which contains the entrypoint method
+ *   (example "package:foo_package/main.dart").  If nil, this will default to
+ *   the same library as the `main()` function in the Dart program.
  * @return YES if the call succeeds in creating and running a Flutter Engine instance; NO otherwise.
  */
 - (BOOL)runWithEntrypoint:(nullable NSString*)entrypoint libraryURI:(nullable NSString*)uri;
@@ -236,8 +237,9 @@ FLUTTER_DARWIN_EXPORT
  *   FlutterDefaultDartEntrypoint (or nil); this will default to `main()`.  If it is not the app's
  *   main() function, that function must be decorated with `@pragma(vm:entry-point)` to ensure the
  *   method is not tree-shaken by the Dart compiler.
- * @param libraryURI The URI of the Dart library which contains the entrypoint method.  IF nil,
- *   this will default to the same library as the `main()` function in the Dart program.
+ * @param libraryURI The URI of the Dart library which contains the entrypoint
+ *   method (example "package:foo_package/main.dart").  If nil, this will
+ *   default to the same library as the `main()` function in the Dart program.
  * @param initialRoute The name of the initial Flutter `Navigator` `Route` to load. If this is
  *   FlutterDefaultInitialRoute (or nil), it will default to the "/" route.
  * @return YES if the call succeeds in creating and running a Flutter Engine instance; NO otherwise.
@@ -257,8 +259,9 @@ FLUTTER_DARWIN_EXPORT
  *   FlutterDefaultDartEntrypoint (or nil); this will default to `main()`.  If it is not the app's
  *   main() function, that function must be decorated with `@pragma(vm:entry-point)` to ensure the
  *   method is not tree-shaken by the Dart compiler.
- * @param libraryURI The URI of the Dart library which contains the entrypoint method.  IF nil,
- *   this will default to the same library as the `main()` function in the Dart program.
+ * @param libraryURI The URI of the Dart library which contains the entrypoint
+ *   method (example "package:foo_package/main.dart").  If nil, this will
+ *   default to the same library as the `main()` function in the Dart program.
  * @param initialRoute The name of the initial Flutter `Navigator` `Route` to load. If this is
  *   FlutterDefaultInitialRoute (or nil), it will default to the "/" route.
  * @param entrypointArgs Arguments passed as a list of string to Dart's entrypoint function.
@@ -407,19 +410,34 @@ FLUTTER_DARWIN_EXPORT
 @property(nonatomic, readonly) FlutterBasicMessageChannel* keyEventChannel;
 
 /**
- * The `NSURL` of the observatory for the service isolate.
+ * The depcreated `NSURL` of the Dart VM Service for the service isolate.
  *
  * This is only set in debug and profile runtime modes, and only after the
- * observatory service is ready. In release mode or before the observatory has
+ * Dart VM Service is ready. In release mode or before the Dart VM Service has
  * started, it returns `nil`.
  */
-@property(nonatomic, readonly, nullable) NSURL* observatoryUrl;
+@property(nonatomic, readonly, nullable)
+    NSURL* observatoryUrl FLUTTER_DEPRECATED("Use vmServiceUrl instead");
+
+/**
+ * The `NSURL` of the Dart VM Service for the service isolate.
+ *
+ * This is only set in debug and profile runtime modes, and only after the
+ * Dart VM Service is ready. In release mode or before the Dart VM Service has
+ * started, it returns `nil`.
+ */
+@property(nonatomic, readonly, nullable) NSURL* vmServiceUrl;
 
 /**
  * The `FlutterBinaryMessenger` associated with this FlutterEngine (used for communicating with
  * channels).
  */
 @property(nonatomic, readonly) NSObject<FlutterBinaryMessenger>* binaryMessenger;
+
+/**
+ * The `FlutterTextureRegistry` associated with this FlutterEngine (used to register textures).
+ */
+@property(nonatomic, readonly) NSObject<FlutterTextureRegistry>* textureRegistry;
 
 /**
  * The UI Isolate ID of the engine.

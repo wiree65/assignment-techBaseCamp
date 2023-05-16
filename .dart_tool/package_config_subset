@@ -38,6 +38,10 @@ flutter_lints
 2.12
 file:///Users/wiree/.pub-cache/hosted/pub.dev/flutter_lints-1.0.4/
 file:///Users/wiree/.pub-cache/hosted/pub.dev/flutter_lints-1.0.4/lib/
+http
+2.19
+file:///Users/wiree/.pub-cache/hosted/pub.dev/http-0.13.6/
+file:///Users/wiree/.pub-cache/hosted/pub.dev/http-0.13.6/lib/
 http_parser
 2.12
 file:///Users/wiree/.pub-cache/hosted/pub.dev/http_parser-4.0.2/

@@ -74,6 +74,12 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "http",
+      "rootUri": "file:///Users/wiree/.pub-cache/hosted/pub.dev/http-0.13.6",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
       "name": "http_parser",
       "rootUri": "file:///Users/wiree/.pub-cache/hosted/pub.dev/http_parser-4.0.2",
       "packageUri": "lib/",
@@ -188,7 +194,7 @@
       "languageVersion": "2.16"
     }
   ],
-  "generated": "2023-05-16T03:26:26.775496Z",
+  "generated": "2023-05-16T05:41:30.206558Z",
   "generator": "pub",
   "generatorVersion": "3.0.0"
 }

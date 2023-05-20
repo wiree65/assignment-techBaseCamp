@@ -45,7 +45,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
   Future<void> fetchRequestIdDetail(String id) async {
     try {
       detail = await Provider.of<MovieProvider>(context, listen: false)
-          .fetchCategory(id);
+          .fetchDetail(id);
     } on DioError catch (e) {
       print('error');
       print(e);

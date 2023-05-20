@@ -97,6 +97,7 @@ class _SearchState extends State<SearchScreen> {
                                                 return ListTile(
                                                   onTap: () {
                                                     print(movie.imdbID);
+                                                    print(movie.poster);
                                                     Navigator.push(
                                                       context,
                                                       MaterialPageRoute(

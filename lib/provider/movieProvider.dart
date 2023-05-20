@@ -45,7 +45,7 @@ class MovieProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<dynamic> fetchCategory(String imdbID) async {
+  Future<dynamic> fetchDetail(String imdbID) async {
     dynamic response;
     try {
       response =

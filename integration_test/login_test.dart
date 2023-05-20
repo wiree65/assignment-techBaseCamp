@@ -30,25 +30,28 @@ void main() {
         },
       );
 
-      // testWidgets(
-      //   'verify login screen with incorrect username and password',
-      //   (tester) async {
-      //     app.main();
-      //     await tester.pumpAndSettle();
-      //     await Future.delayed(const Duration(seconds: 2));
-      //     await tester.enterText(
-      //         find.byType(TextFormField).at(0), 'katak1@gmail.com');
-      //     await Future.delayed(const Duration(seconds: 2));
-      //     await tester.enterText(find.byType(TextFormField).at(1), '12345678');
-      //     await Future.delayed(const Duration(seconds: 2));
-      //     await tester.tap(find.byType(ElevatedButton));
-      //     await Future.delayed(const Duration(seconds: 2));
-      //     await tester.pumpAndSettle();
+      testWidgets(
+        'verify login screen with incorrect username and password',
+        (tester) async {
+          app.main();
+          await tester.pumpAndSettle();
+          await Future.delayed(const Duration(seconds: 2));
+          await tester.enterText(
+              find.byType(TextField).at(0), 'katak1@gmail.com');
+          await Future.delayed(const Duration(seconds: 2));
+          await tester.enterText(find.byType(TextField).at(1), '123');
+          await Future.delayed(const Duration(seconds: 2));
+          await tester.tap(find.byType(ElevatedButton));
+          await Future.delayed(const Duration(seconds: 2));
+          await tester.pumpAndSettle();
 
-      //     await Future.delayed(const Duration(seconds: 2));
-      //     expect(find.text('Invalid username or password'), findsOneWidget);
-      //   },
-      // );
+          await Future.delayed(const Duration(seconds: 2));
+          expect(
+              find.text(
+                  'The password is invalid or the user does not have a password.'),
+              findsOneWidget);
+        },
+      );
     },
   );
 }

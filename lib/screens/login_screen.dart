@@ -169,7 +169,7 @@ class _LoginState extends State<LoginScreen> {
                           ? Container(
                               width: width,
                               padding: const EdgeInsets.only(
-                                  top: 20, left: 45, right: 45),
+                                  top: 20, left: 20, right: 20),
                               child: Text(
                                 errorhandle,
                                 style: const TextStyle(

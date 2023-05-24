@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/screens/landing_screen.dart';
 import 'package:provider/provider.dart';
 import 'provider/movieProvider.dart';
 import 'screens/login_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -21,6 +23,12 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  User? user;
+  @override
+  void initState() {
+    super.initState();
+    user = FirebaseAuth.instance.currentUser;
+  }
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -28,10 +36,10 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (ctx) => MovieProvider()),
       ],
       child: Consumer<MovieProvider>(
-        builder: (ctx, auth, child) => const MaterialApp(
+        builder: (ctx, auth, child) =>  MaterialApp(
             title: 'Movie',
             debugShowCheckedModeBanner: false,
-            home: LoginScreen()),
+            home: user != null ? const LoginScreen():const LandingScreen()),
       ),
     );
   }

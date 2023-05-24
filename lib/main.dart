@@ -39,7 +39,7 @@ class _MyAppState extends State<MyApp> {
         builder: (ctx, auth, child) =>  MaterialApp(
             title: 'Movie',
             debugShowCheckedModeBanner: false,
-            home: user != null ? const LoginScreen():const LandingScreen()),
+            home: user != null ? const LandingScreen():const LoginScreen()),
       ),
     );
   }

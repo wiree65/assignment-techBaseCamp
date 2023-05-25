@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import '../components/button.dart';
 import '../components/constants.dart';
 import '../components/utils.dart';
-import 'landing_screen.dart';
-import 'register_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -81,18 +80,7 @@ class _LoginState extends State<LoginScreen> {
                                         ),
                                       ),
                                       TextButton(
-                                          onPressed: () {
-                                            setState(() {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) {
-                                                    return const RegisterScreen();
-                                                  },
-                                                ),
-                                              );
-                                            });
-                                          },
+                                          onPressed: () => Get.toNamed('/register/'),
                                           child: const Text(
                                             'create an account',
                                             style: TextStyle(
@@ -197,14 +185,7 @@ class _LoginState extends State<LoginScreen> {
                                             password: passwordController.text))
                                     .user;
                                 if (firebaseUser != null) {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return const LandingScreen();
-                                      },
-                                    ),
-                                  );
+                                  Get.offAllNamed('/landing');
                                 } else {
                                   print('Check email and password');
                                 }

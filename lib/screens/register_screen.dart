@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:my_app/screens/login_screen.dart';
 
 import '../components/button.dart';
@@ -74,11 +75,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   bottomOpacity: 0.0,
                   elevation: 0.0,
                   leading: IconButton(
-                      icon: const Icon(Icons.arrow_back),
-                      color: Colors.black54,
-                      onPressed: () {
-                        Navigator.pop(context);
-                      }),
+                    icon: const Icon(Icons.arrow_back),
+                    color: Colors.black54,
+                    onPressed: () => Get.back(),
+                  ),
                   centerTitle: true,
                 ),
                 body: SingleChildScrollView(
@@ -274,7 +274,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ? Container(
                                 width: width,
                                 padding:
-                                    const EdgeInsets.only(top: 10, left: 45),
+                                    const EdgeInsets.only(top: 10, left: 20),
                                 child: const Text(
                                   'please fill in email',
                                   style: TextStyle(
@@ -286,7 +286,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ? Container(
                                 width: width,
                                 padding:
-                                    const EdgeInsets.only(top: 10, left: 45),
+                                    const EdgeInsets.only(top: 10, left: 20),
                                 child: const Text(
                                   'please fill in password',
                                   style: TextStyle(
@@ -339,16 +339,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         .createUserWithEmailAndPassword(
                                             email: emailController.text,
                                             password: passwordController.text)
-                                        .then((value) => {
-                                              Navigator.pushReplacement(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) {
-                                                    return const LoginScreen();
-                                                  },
-                                                ),
-                                              )
-                                            })
+                                        .then((value) => {Get.offAllNamed('/')})
                                         // ignore: invalid_return_type_for_catch_error
                                         .catchError((e) => {
                                               Navigator.pop(context),

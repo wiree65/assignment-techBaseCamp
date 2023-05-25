@@ -85,14 +85,11 @@ class _LandingState extends State<LandingScreen> {
                                             size: 25, color: purplePrimary),
                                         onPressed: () async {
                                           await FirebaseAuth.instance.signOut();
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) {
-                                                return const LoginScreen();
-                                              },
-                                            ),
-                                          );
+                                          Navigator.push(context,
+                                              MaterialPageRoute(
+                                                  builder: (context) {
+                                            return const LoginScreen();
+                                          }));
                                         },
                                       ),
                                     ],

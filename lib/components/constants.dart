@@ -13,3 +13,8 @@ const whitePrimary = Color(0xFFF9F9F9);
 const greyPrimary = Color(0xFFEFF0F6);
 
 const grey = Color(0xFFCFCFCF);
+
+double extraFontSize = 25;
+double generalFontSize = 17;
+double generalPadding = 20;
+double generalHightButton = 55;

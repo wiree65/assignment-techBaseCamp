@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
@@ -14,7 +13,7 @@ void main() {
       testWidgets(
         'verify login screen with correct username and password',
         (tester) async {
-          app.main();
+          app.main(true);
           await tester.pumpAndSettle();
           await Future.delayed(const Duration(seconds: 2));
           await tester.enterText(
@@ -25,17 +24,15 @@ void main() {
           await tester.tap(find.byType(ElevatedButton));
           await Future.delayed(const Duration(seconds: 2));
           await tester.pumpAndSettle();
-
           await Future.delayed(const Duration(seconds: 2));
           expect(find.byType(LandingScreen), findsOneWidget);
-          await FirebaseAuth.instance.signOut();
         },
       );
 
       testWidgets(
         'verify login screen with incorrect username and password',
         (tester) async {
-          app.main();
+          app.main(true);
           await tester.pumpAndSettle();
           await Future.delayed(const Duration(seconds: 2));
           await tester.enterText(

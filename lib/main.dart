@@ -10,16 +10,19 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'firebase_options.dart';
 import 'package:get/get.dart';
 
-void main() async {
+void main(dynamic isTest) async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(MyApp(
+    isTest: isTest,
+  ));
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+  final bool isTest;
+  const MyApp({Key? key, required this.isTest}) : super(key: key);
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -47,7 +50,9 @@ class _MyAppState extends State<MyApp> {
               GetPage(
                   name: "/",
                   page: () => user != null
-                      ? const LandingScreen()
+                      ? widget.isTest
+                          ? const LoginScreen()
+                          : const LandingScreen()
                       : const LoginScreen()),
               GetPage(name: '/register', page: () => const RegisterScreen()),
               GetPage(name: '/landing', page: () => const LandingScreen()),

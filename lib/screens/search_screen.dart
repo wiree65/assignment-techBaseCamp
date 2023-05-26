@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../components/constants.dart';
-import '../provider/movieProvider.dart';
+import '../controller/movieProvider.dart';
 import 'package:provider/provider.dart';
 
 import 'moive_detail_screen.dart';

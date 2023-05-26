@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../components/constants.dart';
-import '../provider/movieProvider.dart';
+import '../controller/movieProvider.dart';
 
 class MovieDetailScreen extends StatefulWidget {
   final String imdbID;

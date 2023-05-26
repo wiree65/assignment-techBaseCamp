@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:my_app/provider/movieProvider.dart';
+import 'package:my_app/controller/movieProvider.dart';
 import 'package:my_app/screens/moive_detail_screen.dart';
 import 'package:my_app/screens/search_screen.dart';
 import 'package:provider/provider.dart';

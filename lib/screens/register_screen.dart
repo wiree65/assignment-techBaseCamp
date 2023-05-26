@@ -385,7 +385,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) {
-                                        return const LoginScreen();
+                                        return  LoginScreen();
                                       },
                                     ),
                                   );

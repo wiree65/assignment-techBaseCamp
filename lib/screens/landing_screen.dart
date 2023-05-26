@@ -90,7 +90,7 @@ class _LandingState extends State<LandingScreen> {
                                           Navigator.push(context,
                                               MaterialPageRoute(
                                                   builder: (context) {
-                                            return const LoginScreen();
+                                            return  LoginScreen();
                                           }));
                                         },
                                       ),

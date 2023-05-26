@@ -5,29 +5,23 @@ import '../components/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+import '../controller/login_controller.dart';
 
-  @override
-  _LoginState createState() => _LoginState();
-}
-
-class _LoginState extends State<LoginScreen> {
-  bool _passwordVisible = false;
+class LoginScreen extends StatelessWidget {
+  LoginScreen({Key? key}) : super(key: key);
 
   final ScrollController _scrollController = ScrollController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  String errorhandle = '';
 
   @override
   Widget build(BuildContext context) {
+    LoginController loginController = Get.put(LoginController());
     double width = MediaQuery.of(context).size.width;
     return Container(
       color: whitePrimary,
       child: SafeArea(
         child: Scaffold(
-          // backgroundColor: kPrimaryColor,
           body: Container(
             color: whitePrimary,
             child: SafeArea(
@@ -40,7 +34,8 @@ class _LoginState extends State<LoginScreen> {
                     children: <Widget>[
                       Container(
                           padding: EdgeInsets.only(
-                              left: generalPaddingLeftRight, right: generalPaddingLeftRight),
+                              left: generalPaddingLeftRight,
+                              right: generalPaddingLeftRight),
                           width: width,
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,7 +47,8 @@ class _LoginState extends State<LoginScreen> {
                                       fontWeight: FontWeight.w600),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(top: generalPaddingLeftRight),
+                                  padding: EdgeInsets.only(
+                                      top: generalPaddingLeftRight),
                                   child: Text(
                                     'login with email to start watching movie',
                                     style: TextStyle(
@@ -90,13 +86,14 @@ class _LoginState extends State<LoginScreen> {
                               ])),
                       Padding(
                         padding: EdgeInsets.only(
-                            left: generalPaddingLeftRight, right: generalPaddingLeftRight),
+                            left: generalPaddingLeftRight,
+                            right: generalPaddingLeftRight),
                         child: Container(
                             margin: const EdgeInsets.symmetric(vertical: 10),
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 15, vertical: 5),
                             width: width,
-                            height: 55,
+                            height: generalHightButton,
                             decoration: BoxDecoration(
                               color: greyPrimary,
                               borderRadius: BorderRadius.circular(8),
@@ -113,7 +110,7 @@ class _LoginState extends State<LoginScreen> {
                       ),
                       Container(
                           margin: EdgeInsets.only(
-                              top: 10,
+                              top: generalPaddingTop,
                               left: generalPaddingLeftRight,
                               right: generalPaddingLeftRight),
                           padding: const EdgeInsets.symmetric(
@@ -124,28 +121,28 @@ class _LoginState extends State<LoginScreen> {
                             color: greyPrimary,
                             borderRadius: BorderRadius.circular(8),
                           ),
-                          child: TextField(
-                            controller: passwordController,
-                            obscureText: !_passwordVisible,
-                            decoration: InputDecoration(
-                                hintText: 'Password',
-                                hintStyle: TextStyle(fontSize: generalFontSize),
-                                suffixIcon: IconButton(
-                                  icon: Icon(
-                                    _passwordVisible
-                                        ? Icons.visibility_off
-                                        : Icons.visibility,
-                                    color: Colors.black54,
-                                  ),
-                                  onPressed: () {
-                                    setState(() {
-                                      _passwordVisible = !_passwordVisible;
-                                    });
-                                  },
-                                ),
-                                border: InputBorder.none),
-                          )),
-                      errorhandle != ''
+                          child: Obx(() => TextField(
+                                controller: passwordController,
+                                obscureText:
+                                    !loginController.passwordVisible.value,
+                                decoration: InputDecoration(
+                                    hintText: 'Password',
+                                    hintStyle:
+                                        TextStyle(fontSize: generalFontSize),
+                                    suffixIcon: IconButton(
+                                      icon: Icon(
+                                        loginController.passwordVisible.value
+                                            ? Icons.visibility_off
+                                            : Icons.visibility,
+                                        color: Colors.black54,
+                                      ),
+                                      onPressed: () {
+                                        loginController.handlePassword();
+                                      },
+                                    ),
+                                    border: InputBorder.none),
+                              ))),
+                      loginController.error.value != ''
                           ? Container(
                               width: width,
                               padding: EdgeInsets.only(
@@ -153,7 +150,7 @@ class _LoginState extends State<LoginScreen> {
                                   left: generalPaddingLeftRight,
                                   right: generalPaddingLeftRight),
                               child: Text(
-                                errorhandle,
+                                loginController.error.value,
                                 style: TextStyle(
                                     fontSize: generalFontSize,
                                     color: Colors.red),
@@ -183,9 +180,7 @@ class _LoginState extends State<LoginScreen> {
                                 }
                               } on FirebaseAuthException catch (e) {
                                 Navigator.pop(context);
-                                setState(() {
-                                  errorhandle = e.message!;
-                                });
+                                loginController.handdleError(e.message!);
                               }
                             },
                             title: 'Login'),

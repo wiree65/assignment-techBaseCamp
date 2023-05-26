@@ -3,14 +3,14 @@ import 'package:my_app/screens/landing_screen.dart';
 import 'package:my_app/screens/register_screen.dart';
 import 'package:my_app/screens/search_screen.dart';
 import 'package:provider/provider.dart';
-import 'provider/movieProvider.dart';
+import 'controller/movieProvider.dart';
 import 'screens/login_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'firebase_options.dart';
 import 'package:get/get.dart';
 
-void main(dynamic isTest) async {
+void main(List<String> isTest) async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -21,8 +21,8 @@ void main(dynamic isTest) async {
 }
 
 class MyApp extends StatefulWidget {
-  final bool isTest;
-  const MyApp({Key? key, required this.isTest}) : super(key: key);
+  List<String> isTest;
+  MyApp({Key? key, required this.isTest}) : super(key: key);
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -50,10 +50,10 @@ class _MyAppState extends State<MyApp> {
               GetPage(
                   name: "/",
                   page: () => user != null
-                      ? widget.isTest
-                          ? const LoginScreen()
+                      ? widget.isTest.isEmpty
+                          ?  LoginScreen()
                           : const LandingScreen()
-                      : const LoginScreen()),
+                      :  LoginScreen()),
               GetPage(name: '/register', page: () => const RegisterScreen()),
               GetPage(name: '/landing', page: () => const LandingScreen()),
               GetPage(name: '/search', page: () => const SearchScreen()),

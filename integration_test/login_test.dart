@@ -13,7 +13,7 @@ void main() {
       testWidgets(
         'verify login screen with correct username and password',
         (tester) async {
-          app.main(true);
+          app.main(['true']);
           await tester.pumpAndSettle();
           await Future.delayed(const Duration(seconds: 2));
           await tester.enterText(
@@ -32,7 +32,7 @@ void main() {
       testWidgets(
         'verify login screen with incorrect username and password',
         (tester) async {
-          app.main(true);
+          app.main(['true']);
           await tester.pumpAndSettle();
           await Future.delayed(const Duration(seconds: 2));
           await tester.enterText(

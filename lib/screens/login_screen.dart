@@ -23,7 +23,6 @@ class _LoginState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
     return Container(
       color: whitePrimary,
       child: SafeArea(
@@ -39,30 +38,25 @@ class _LoginState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      const SizedBox(
-                        height: 20,
-                      ),
                       Container(
-                          padding: const EdgeInsets.only(left: 20, right: 20),
+                          padding: EdgeInsets.only(
+                              left: generalPadding, right: generalPadding),
                           width: width,
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Text(
+                                Text(
                                   'Movie Assignment',
                                   style: TextStyle(
-                                      // color: kPrimaryFont,
-                                      fontSize: 25,
-                                      fontFamily: 'Quicksand',
+                                      fontSize: extraFontSize,
                                       fontWeight: FontWeight.w600),
                                 ),
-                                const Padding(
-                                  padding: EdgeInsets.only(top: 15.0),
+                                Padding(
+                                  padding: EdgeInsets.only(top: generalPadding),
                                   child: Text(
                                     'login with email to start watching movie',
                                     style: TextStyle(
-                                      fontSize: 16,
-                                      fontFamily: 'Quicksand',
+                                      fontSize: generalFontSize,
                                     ),
                                   ),
                                 ),
@@ -72,38 +66,35 @@ class _LoginState extends State<LoginScreen> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      const Text(
+                                      Text(
                                         'new here?',
                                         style: TextStyle(
-                                          fontSize: 16,
-                                          fontFamily: 'Quicksand',
+                                          fontSize: generalFontSize,
                                         ),
                                       ),
                                       TextButton(
-                                          onPressed: () => Get.toNamed('/register/'),
-                                          child: const Text(
+                                          onPressed: () =>
+                                              Get.toNamed('/register/'),
+                                          child: Text(
                                             'create an account',
                                             style: TextStyle(
-                                                fontSize: 16,
-                                                fontFamily: 'Quicksand',
+                                                fontSize: generalFontSize,
                                                 decoration:
                                                     TextDecoration.underline,
-                                                color: Color(0xFF6D65AD),
+                                                color: purplePrimary,
                                                 fontWeight: FontWeight.w600),
                                           )),
                                     ],
                                   ),
                                 ),
                               ])),
-                      const SizedBox(
-                        height: 10,
-                      ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        padding: EdgeInsets.only(
+                            left: generalPadding, right: generalPadding),
                         child: Container(
                             margin: const EdgeInsets.symmetric(vertical: 10),
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 14, vertical: 5),
+                                horizontal: 15, vertical: 5),
                             width: width,
                             height: 55,
                             decoration: BoxDecoration(
@@ -113,20 +104,22 @@ class _LoginState extends State<LoginScreen> {
                             child: TextField(
                               keyboardType: TextInputType.emailAddress,
                               controller: emailController,
-                              decoration: const InputDecoration(
+                              decoration: InputDecoration(
                                   hintText: 'Email',
-                                  hintStyle: TextStyle(
-                                      fontFamily: 'Quicksand', fontSize: 16),
+                                  hintStyle:
+                                      TextStyle(fontSize: generalFontSize),
                                   border: InputBorder.none),
                             )),
                       ),
                       Container(
-                          margin: const EdgeInsets.only(
-                              top: 10, left: 20, right: 20),
+                          margin: EdgeInsets.only(
+                              top: 10,
+                              left: generalPadding,
+                              right: generalPadding),
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 14, vertical: 5),
+                              horizontal: 15, vertical: 5),
                           width: width,
-                          height: 55,
+                          height: generalHightButton,
                           decoration: BoxDecoration(
                             color: greyPrimary,
                             borderRadius: BorderRadius.circular(8),
@@ -136,8 +129,7 @@ class _LoginState extends State<LoginScreen> {
                             obscureText: !_passwordVisible,
                             decoration: InputDecoration(
                                 hintText: 'Password',
-                                hintStyle: const TextStyle(
-                                    fontFamily: 'Quicksand', fontSize: 16),
+                                hintStyle: TextStyle(fontSize: generalFontSize),
                                 suffixIcon: IconButton(
                                   icon: Icon(
                                     _passwordVisible
@@ -156,25 +148,25 @@ class _LoginState extends State<LoginScreen> {
                       errorhandle != ''
                           ? Container(
                               width: width,
-                              padding: const EdgeInsets.only(
-                                  top: 20, left: 20, right: 20),
+                              padding: EdgeInsets.only(
+                                  top: generalPadding,
+                                  left: generalPadding,
+                                  right: generalPadding),
                               child: Text(
                                 errorhandle,
-                                style: const TextStyle(
-                                    fontSize: 16, color: Colors.red),
+                                style: TextStyle(
+                                    fontSize: generalFontSize,
+                                    color: Colors.red),
                               ),
                             )
                           : Container(),
-                      const SizedBox(
-                        height: 24,
-                      ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        padding: EdgeInsets.all(generalPadding),
                         child: Button(
                             width: width,
                             color: purplePrimary,
                             textColor: whitePrimary,
-                            fontsize: 16.00,
+                            fontsize: generalFontSize,
                             onPress: () async {
                               try {
                                 Utils.showAlertDialog(context);
@@ -197,9 +189,6 @@ class _LoginState extends State<LoginScreen> {
                               }
                             },
                             title: 'Login'),
-                      ),
-                      const SizedBox(
-                        height: 23,
                       ),
                     ],
                   ),

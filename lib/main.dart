@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/screens/landing_screen.dart';
 import 'package:my_app/screens/register_screen.dart';
+import 'package:my_app/screens/search_screen.dart';
 import 'package:provider/provider.dart';
 import 'provider/movieProvider.dart';
 import 'screens/login_screen.dart';
@@ -40,6 +41,7 @@ class _MyAppState extends State<MyApp> {
         ],
         child: Consumer<MovieProvider>(
           builder: (ctx, auth, child) => GetMaterialApp(
+            theme: ThemeData(fontFamily: "Quicksand"),
             initialRoute: "/",
             getPages: [
               GetPage(
@@ -49,6 +51,7 @@ class _MyAppState extends State<MyApp> {
                       : const LoginScreen()),
               GetPage(name: '/register', page: () => const RegisterScreen()),
               GetPage(name: '/landing', page: () => const LandingScreen()),
+              GetPage(name: '/search', page: () => const SearchScreen()),
             ],
             title: 'Movie',
             debugShowCheckedModeBanner: false,

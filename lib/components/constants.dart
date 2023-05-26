@@ -16,5 +16,6 @@ const grey = Color(0xFFCFCFCF);
 
 double extraFontSize = 25;
 double generalFontSize = 17;
-double generalPadding = 20;
+double generalPaddingLeftRight = 20;
+double generalPaddingTop = 20;
 double generalHightButton = 55;

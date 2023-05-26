@@ -37,13 +37,14 @@ class MoiveListScrollColumn extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 15.0),
                         child: SizedBox(
                           width: width * 0.5,
-                          child: const Text(
+                          child: Text(
                             "Transformers: Rise of the Beasts",
                             overflow: TextOverflow.ellipsis,
                             maxLines: 2,
                             softWrap: false,
                             style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 16),
+                                fontWeight: FontWeight.bold,
+                                fontSize: generalFontSize),
                           ),
                         ),
                       ),

@@ -108,8 +108,9 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                                         return Column(
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 20.0, right: 20),
+                                              padding: EdgeInsets.only(
+                                                  left: generalPaddingLeftRight,
+                                                  right: generalPaddingLeftRight),
                                               child: Center(
                                                   child: ClipRRect(
                                                 borderRadius:

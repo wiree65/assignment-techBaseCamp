@@ -22,7 +22,7 @@ class MoiveListScrollRow extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             children: List.generate(15, (int index) {
               return Padding(
-                padding: const EdgeInsets.only(left: 20.0),
+                padding: EdgeInsets.only(left: generalPaddingLeftRight),
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,8 +34,8 @@ class MoiveListScrollRow extends StatelessWidget {
                           fit: BoxFit.fitWidth,
                         ),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.only(top: 8.0),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8.0),
                         child: SizedBox(
                           width: 150,
                           child: Text(
@@ -44,7 +44,8 @@ class MoiveListScrollRow extends StatelessWidget {
                             maxLines: 2,
                             softWrap: false,
                             style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 16),
+                                fontWeight: FontWeight.bold,
+                                fontSize: generalFontSize),
                           ),
                         ),
                       ),

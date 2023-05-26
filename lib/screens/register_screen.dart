@@ -23,7 +23,7 @@ showAlertDialog(BuildContext context) {
     builder: (BuildContext context) {
       return const Center(
           child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.white)));
+              valueColor: AlwaysStoppedAnimation<Color>(purplePrimary)));
     },
   );
 }
@@ -83,324 +83,325 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 body: SingleChildScrollView(
                   controller: _scrollController,
-                  child: Container(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const SizedBox(
-                          height: 10,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: generalPaddingLeftRight,
+                            top: generalPaddingTop),
+                        child: Container(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            'Let’s get start',
+                            style: TextStyle(
+                                fontSize: extraFontSize,
+                                fontWeight: FontWeight.w600),
+                          ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20.0),
-                          child: Container(
-                            alignment: Alignment.topLeft,
-                            child: const Text(
-                              'Let’s get start',
-                              style: TextStyle(
-                                  // color: kPrimaryFont,
-                                  fontSize: 24,
-                                  fontFamily: 'Quicksand',
-                                  fontWeight: FontWeight.w600),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: generalPaddingLeftRight,
+                            top: generalPaddingTop),
+                        child: Container(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            'Create an account to start watching movie',
+                            style: TextStyle(
+                              fontSize: generalFontSize,
                             ),
                           ),
                         ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20.0, top: 8.0),
-                          child: Container(
-                            alignment: Alignment.topLeft,
-                            child: const Text(
-                              'Create an account to start watching movie',
-                              style: TextStyle(
-                                // color: kPrimaryFont,
-                                fontSize: 14,
-                                fontFamily: 'Quicksand',
-                              ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            top: generalPaddingTop,
+                            left: generalPaddingLeftRight,
+                            right: generalPaddingLeftRight),
+                        child: Container(
+                            margin: const EdgeInsets.symmetric(vertical: 10),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 5),
+                            width: width,
+                            height: generalHightButton,
+                            decoration: BoxDecoration(
+                              color: greyPrimary,
+                              borderRadius: BorderRadius.circular(10),
                             ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20.0, right: 20),
-                          child: Container(
-                              margin: const EdgeInsets.symmetric(vertical: 10),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 14, vertical: 5),
-                              width: width,
-                              height: 55,
-                              decoration: BoxDecoration(
-                                color: greyPrimary,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: TextField(
-                                onChanged: (text) {
-                                  setState(() {
-                                    emailCheck = text;
-                                    setState(() {
-                                      errorhandle = '';
-                                      emailCheckError = '';
-                                    });
-                                  });
-                                },
-                                keyboardType: TextInputType.emailAddress,
-                                controller: emailController,
-                                decoration: const InputDecoration(
-                                    hintText: 'Email',
-                                    hintStyle: TextStyle(
-                                        fontFamily: 'Quicksand', fontSize: 15),
-                                    border: InputBorder.none),
-                              )),
-                        ),
-                        emailCheckError == 'error'
-                            ? Container(
-                                width: width,
-                                padding:
-                                    const EdgeInsets.only(top: 20, left: 25),
-                                child: const Text(
-                                  'โปรดใส่อีเมลบัญชีผู้ใช้',
-                                  style: TextStyle(
-                                      fontSize: 18, color: Colors.red),
-                                ),
-                              )
-                            : Container(),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20.0, right: 20),
-                          child: Container(
-                              margin: const EdgeInsets.symmetric(vertical: 10),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 14, vertical: 5),
-                              width: width,
-                              height: 55,
-                              decoration: BoxDecoration(
-                                color: greyPrimary,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: TextField(
-                                onChanged: (text) {
-                                  passwordCheck = text;
-
-                                  setState(() {
-                                    passwordCheckError = '';
-                                    errorhandle = '';
-                                    passwordEqual = true;
-                                  });
-                                },
-                                controller: passwordController,
-                                obscureText: !_passwordVisible,
-                                decoration: InputDecoration(
-                                    hintText: 'Password',
-                                    hintStyle: const TextStyle(
-                                        fontFamily: 'Quicksand', fontSize: 15),
-                                    suffixIcon: IconButton(
-                                      icon: Icon(
-                                        _passwordVisible
-                                            ? Icons.visibility_off
-                                            : Icons.visibility,
-                                        color: const Color.fromARGB(
-                                            255, 121, 121, 121),
-                                      ),
-                                      onPressed: () {
-                                        setState(() {
-                                          _passwordVisible = !_passwordVisible;
-                                        });
-                                      },
-                                    ),
-                                    border: InputBorder.none),
-                              )),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20.0, right: 20),
-                          child: Container(
-                              margin: const EdgeInsets.symmetric(vertical: 10),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 14, vertical: 5),
-                              width: width,
-                              height: 55,
-                              decoration: BoxDecoration(
-                                color: greyPrimary,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: TextField(
-                                onChanged: (text) {
-                                  confirmPasswordCheck = text;
-                                  setState(() {
-                                    confirmPasswordCheckError = '';
-                                    passwordEqual = true;
-                                    errorhandle = '';
-                                  });
-                                },
-                                controller: confirmPasswordController,
-                                obscureText: !_confirmPasswordVisible,
-                                decoration: InputDecoration(
-                                    hintText: 'Confirm Password',
-                                    hintStyle: const TextStyle(
-                                        fontFamily: 'Quicksand', fontSize: 15),
-                                    suffixIcon: IconButton(
-                                      icon: Icon(
-                                        _confirmPasswordVisible
-                                            ? Icons.visibility_off
-                                            : Icons.visibility,
-                                        color: const Color.fromARGB(
-                                            255, 121, 121, 121),
-                                      ),
-                                      onPressed: () {
-                                        setState(() {
-                                          passwordEqual = true;
-                                          _confirmPasswordVisible =
-                                              !_confirmPasswordVisible;
-                                        });
-                                      },
-                                    ),
-                                    border: InputBorder.none),
-                              )),
-                        ),
-                        errorhandle != ''
-                            ? Container(
-                                width: width,
-                                padding: const EdgeInsets.only(
-                                    top: 10, left: 20, right: 20),
-                                child: Text(
-                                  errorhandle,
-                                  style: const TextStyle(
-                                      fontSize: 16, color: Colors.red),
-                                ),
-                              )
-                            : Container(),
-                        emailCheck == 'error'
-                            ? Container(
-                                width: width,
-                                padding:
-                                    const EdgeInsets.only(top: 10, left: 20),
-                                child: const Text(
-                                  'please fill in email',
-                                  style: TextStyle(
-                                      fontSize: 16, color: Colors.red),
-                                ),
-                              )
-                            : Container(),
-                        passwordCheck == 'error'
-                            ? Container(
-                                width: width,
-                                padding:
-                                    const EdgeInsets.only(top: 10, left: 20),
-                                child: const Text(
-                                  'please fill in password',
-                                  style: TextStyle(
-                                      fontSize: 16, color: Colors.red),
-                                ),
-                              )
-                            : Container(),
-                        passwordEqual == false
-                            ? Container(
-                                width: width,
-                                padding:
-                                    const EdgeInsets.only(top: 10, left: 45),
-                                child: const Text(
-                                  'password does not match',
-                                  style: TextStyle(
-                                      fontSize: 16, color: Colors.red),
-                                ),
-                              )
-                            : Container(),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20.0, right: 20),
-                          child: Button(
-                              width: width,
-                              onPress: () {
-                                Utils.showAlertDialog(context);
+                            child: TextField(
+                              onChanged: (text) {
                                 setState(() {
-                                  if (emailController.text == '') {
-                                    emailCheck = 'error';
-                                  }
-                                  if (passwordController.text == '') {
-                                    passwordCheck = 'error';
-                                  }
-
-                                  if (passwordController.text ==
-                                      confirmPasswordController.text) {
-                                    setState(() {
-                                      passwordEqual = true;
-                                    });
-                                  } else {
-                                    setState(() {
-                                      passwordEqual = false;
-                                    });
-                                  }
-                                  if (passwordController.text ==
-                                      confirmPasswordController.text) {
-                                    FirebaseAuth.instance
-                                        .createUserWithEmailAndPassword(
-                                            email: emailController.text,
-                                            password: passwordController.text)
-                                        .then((value) => {Get.offAllNamed('/')})
-                                        // ignore: invalid_return_type_for_catch_error
-                                        .catchError((e) => {
-                                              Navigator.pop(context),
-                                              setState(() {
-                                                errorhandle = e.message;
-                                              })
-                                            });
-                                  } else {
-                                    Navigator.pop(context);
-                                  }
+                                  emailCheck = text;
+                                  setState(() {
+                                    errorhandle = '';
+                                    emailCheckError = '';
+                                  });
                                 });
                               },
-                              color: purplePrimary,
-                              textColor: whitePrimary,
-                              fontsize: 15.00,
-                              title: 'Create Account'),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const Padding(
-                              padding: EdgeInsets.only(top: 0),
+                              keyboardType: TextInputType.emailAddress,
+                              controller: emailController,
+                              decoration: InputDecoration(
+                                  hintText: 'Email',
+                                  hintStyle:
+                                      TextStyle(fontSize: generalFontSize),
+                                  border: InputBorder.none),
+                            )),
+                      ),
+                      emailCheckError == 'error'
+                          ? Container(
+                              width: width,
+                              padding: EdgeInsets.only(
+                                  top: generalPaddingLeftRight,
+                                  left: generalPaddingLeftRight),
                               child: Text(
-                                'Already have an account?',
+                                'โปรดใส่อีเมลบัญชีผู้ใช้',
                                 style: TextStyle(
-                                  // color: kPrimaryFont,
-                                  fontSize: 14,
-                                  fontFamily: 'Quicksand',
-                                ),
+                                    fontSize: generalFontSize,
+                                    color: Colors.red),
                               ),
+                            )
+                          : Container(),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: generalPaddingLeftRight,
+                            right: generalPaddingLeftRight),
+                        child: Container(
+                            margin: EdgeInsets.symmetric(
+                                vertical: generalPaddingTop),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 5),
+                            width: width,
+                            height: generalHightButton,
+                            decoration: BoxDecoration(
+                              color: greyPrimary,
+                              borderRadius: BorderRadius.circular(10),
                             ),
-                            TextButton(
-                                onPressed: () {
+                            child: TextField(
+                              onChanged: (text) {
+                                passwordCheck = text;
+                                setState(() {
+                                  passwordCheckError = '';
+                                  errorhandle = '';
+                                  passwordEqual = true;
+                                });
+                              },
+                              controller: passwordController,
+                              obscureText: !_passwordVisible,
+                              decoration: InputDecoration(
+                                  hintText: 'Password',
+                                  hintStyle:
+                                      TextStyle(fontSize: generalFontSize),
+                                  suffixIcon: IconButton(
+                                    icon: Icon(
+                                      _passwordVisible
+                                          ? Icons.visibility_off
+                                          : Icons.visibility,
+                                      color: const Color.fromARGB(
+                                          255, 121, 121, 121),
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        _passwordVisible = !_passwordVisible;
+                                      });
+                                    },
+                                  ),
+                                  border: InputBorder.none),
+                            )),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: generalPaddingLeftRight,
+                            right: generalPaddingLeftRight),
+                        child: Container(
+                            margin: const EdgeInsets.symmetric(vertical: 10),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 5),
+                            width: width,
+                            height: generalHightButton,
+                            decoration: BoxDecoration(
+                              color: greyPrimary,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: TextField(
+                              onChanged: (text) {
+                                confirmPasswordCheck = text;
+                                setState(() {
+                                  confirmPasswordCheckError = '';
+                                  passwordEqual = true;
+                                  errorhandle = '';
+                                });
+                              },
+                              controller: confirmPasswordController,
+                              obscureText: !_confirmPasswordVisible,
+                              decoration: InputDecoration(
+                                  hintText: 'Confirm Password',
+                                  hintStyle: const TextStyle(
+                                      fontFamily: 'Quicksand', fontSize: 15),
+                                  suffixIcon: IconButton(
+                                    icon: Icon(
+                                      _confirmPasswordVisible
+                                          ? Icons.visibility_off
+                                          : Icons.visibility,
+                                      color: const Color.fromARGB(
+                                          255, 121, 121, 121),
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        passwordEqual = true;
+                                        _confirmPasswordVisible =
+                                            !_confirmPasswordVisible;
+                                      });
+                                    },
+                                  ),
+                                  border: InputBorder.none),
+                            )),
+                      ),
+                      errorhandle != ''
+                          ? Container(
+                              width: width,
+                              padding: EdgeInsets.only(
+                                  top: generalPaddingTop,
+                                  left: generalPaddingLeftRight,
+                                  right: generalPaddingLeftRight),
+                              child: Text(
+                                errorhandle,
+                                style: TextStyle(
+                                    fontSize: generalFontSize,
+                                    color: Colors.red),
+                              ),
+                            )
+                          : Container(),
+                      emailCheck == 'error'
+                          ? Container(
+                              width: width,
+                              padding: EdgeInsets.only(
+                                  top: generalPaddingTop,
+                                  left: generalPaddingLeftRight),
+                              child: Text(
+                                'please fill in email',
+                                style: TextStyle(
+                                    fontSize: generalFontSize,
+                                    color: Colors.red),
+                              ),
+                            )
+                          : Container(),
+                      passwordCheck == 'error'
+                          ? Container(
+                              width: width,
+                              padding: EdgeInsets.only(
+                                  top: generalPaddingTop,
+                                  left: generalPaddingLeftRight),
+                              child: Text(
+                                'please fill in password',
+                                style: TextStyle(
+                                    fontSize: generalFontSize,
+                                    color: Colors.red),
+                              ),
+                            )
+                          : Container(),
+                      passwordEqual == false
+                          ? Container(
+                              width: width,
+                              padding: EdgeInsets.only(
+                                  top: generalPaddingTop,
+                                  left: generalPaddingLeftRight),
+                              child: Text(
+                                'password does not match',
+                                style: TextStyle(
+                                    fontSize: generalFontSize,
+                                    color: Colors.red),
+                              ),
+                            )
+                          : Container(),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            top: generalPaddingTop,
+                            left: generalPaddingLeftRight,
+                            right: generalPaddingLeftRight),
+                        child: Button(
+                            width: width,
+                            onPress: () {
+                              Utils.showAlertDialog(context);
+                              setState(() {
+                                if (emailController.text == '') {
+                                  emailCheck = 'error';
+                                }
+                                if (passwordController.text == '') {
+                                  passwordCheck = 'error';
+                                }
+
+                                if (passwordController.text ==
+                                    confirmPasswordController.text) {
                                   setState(() {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) {
-                                          return const LoginScreen();
-                                        },
-                                      ),
-                                    );
+                                    passwordEqual = true;
                                   });
-                                },
-                                child: const Text(
-                                  'login here',
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      fontFamily: 'Quicksand',
-                                      decoration: TextDecoration.underline,
-                                      color: Color(0xFF6D65AD),
-                                      fontWeight: FontWeight.w600),
-                                )),
-                          ],
-                        ),
-                      ],
-                    ),
+                                } else {
+                                  setState(() {
+                                    passwordEqual = false;
+                                  });
+                                }
+                                if (passwordController.text ==
+                                    confirmPasswordController.text) {
+                                  FirebaseAuth.instance
+                                      .createUserWithEmailAndPassword(
+                                          email: emailController.text,
+                                          password: passwordController.text)
+                                      .then((value) => {Get.offAllNamed('/')})
+                                      // ignore: invalid_return_type_for_catch_error
+                                      .catchError((e) => {
+                                            Navigator.pop(context),
+                                            setState(() {
+                                              errorhandle = e.message;
+                                            })
+                                          });
+                                } else {
+                                  Navigator.pop(context);
+                                }
+                              });
+                            },
+                            color: purplePrimary,
+                            textColor: whitePrimary,
+                            fontsize: generalFontSize,
+                            title: 'Create Account'),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Already have an account?',
+                            style: TextStyle(
+                              fontSize: generalFontSize,
+                            ),
+                          ),
+                          TextButton(
+                              onPressed: () {
+                                setState(() {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return const LoginScreen();
+                                      },
+                                    ),
+                                  );
+                                });
+                              },
+                              child: Text(
+                                'login here',
+                                style: TextStyle(
+                                    fontSize: generalFontSize,
+                                    decoration: TextDecoration.underline,
+                                    color: purplePrimary,
+                                    fontWeight: FontWeight.w600),
+                              )),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ),

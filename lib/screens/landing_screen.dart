@@ -46,14 +46,16 @@ class _LandingState extends State<LandingScreen> {
                 child: SingleChildScrollView(
                   controller: _scrollController,
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 20),
+                    padding: EdgeInsets.only(top: generalPaddingLeftRight),
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(
-                                top: 20.0, left: 20, right: 20),
+                            padding: EdgeInsets.only(
+                                top: generalPaddingLeftRight,
+                                left: generalPaddingLeftRight,
+                                right: generalPaddingLeftRight),
                             child: Row(
                               children: [
                                 Expanded(
@@ -66,16 +68,16 @@ class _LandingState extends State<LandingScreen> {
                                         child: const Text(''),
                                       ),
                                       Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 13.0),
+                                        padding: EdgeInsets.only(
+                                            left: generalPaddingLeftRight),
                                         child: Text(
                                           "Hi " +
                                               user!.email
                                                   .toString()
                                                   .split('@')[0] +
                                               " !",
-                                          style: const TextStyle(
-                                              fontSize: 20,
+                                          style: TextStyle(
+                                              fontSize: generalFontSize,
                                               fontWeight: FontWeight.bold,
                                               color: blackPrimaryFont),
                                         ),

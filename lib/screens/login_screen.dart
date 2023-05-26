@@ -40,7 +40,7 @@ class _LoginState extends State<LoginScreen> {
                     children: <Widget>[
                       Container(
                           padding: EdgeInsets.only(
-                              left: generalPadding, right: generalPadding),
+                              left: generalPaddingLeftRight, right: generalPaddingLeftRight),
                           width: width,
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,7 +52,7 @@ class _LoginState extends State<LoginScreen> {
                                       fontWeight: FontWeight.w600),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(top: generalPadding),
+                                  padding: EdgeInsets.only(top: generalPaddingLeftRight),
                                   child: Text(
                                     'login with email to start watching movie',
                                     style: TextStyle(
@@ -90,7 +90,7 @@ class _LoginState extends State<LoginScreen> {
                               ])),
                       Padding(
                         padding: EdgeInsets.only(
-                            left: generalPadding, right: generalPadding),
+                            left: generalPaddingLeftRight, right: generalPaddingLeftRight),
                         child: Container(
                             margin: const EdgeInsets.symmetric(vertical: 10),
                             padding: const EdgeInsets.symmetric(
@@ -114,8 +114,8 @@ class _LoginState extends State<LoginScreen> {
                       Container(
                           margin: EdgeInsets.only(
                               top: 10,
-                              left: generalPadding,
-                              right: generalPadding),
+                              left: generalPaddingLeftRight,
+                              right: generalPaddingLeftRight),
                           padding: const EdgeInsets.symmetric(
                               horizontal: 15, vertical: 5),
                           width: width,
@@ -149,9 +149,9 @@ class _LoginState extends State<LoginScreen> {
                           ? Container(
                               width: width,
                               padding: EdgeInsets.only(
-                                  top: generalPadding,
-                                  left: generalPadding,
-                                  right: generalPadding),
+                                  top: generalPaddingLeftRight,
+                                  left: generalPaddingLeftRight,
+                                  right: generalPaddingLeftRight),
                               child: Text(
                                 errorhandle,
                                 style: TextStyle(
@@ -161,7 +161,7 @@ class _LoginState extends State<LoginScreen> {
                             )
                           : Container(),
                       Padding(
-                        padding: EdgeInsets.all(generalPadding),
+                        padding: EdgeInsets.all(generalPaddingLeftRight),
                         child: Button(
                             width: width,
                             color: purplePrimary,
